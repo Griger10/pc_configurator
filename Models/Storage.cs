@@ -17,8 +17,6 @@ public partial class Storage
 
     public string Interface { get; set; } = null!;
 
-    public decimal Price { get; set; }
-
     public virtual ICollection<ConfigurationStorage> ConfigurationStorages { get; set; } = new List<ConfigurationStorage>();
 
     public virtual Manufacturer Manufacturer { get; set; } = null!;
