@@ -17,8 +17,6 @@ public partial class Processor
 
     public decimal Frequency { get; set; }
 
-    public decimal Price { get; set; }
-
     public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
     public virtual Manufacturer Manufacturer { get; set; } = null!;

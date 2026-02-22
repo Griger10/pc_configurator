@@ -17,8 +17,6 @@ public partial class Configuration
 
     public DateTime CreatedDate { get; set; }
 
-    public decimal TotalPrice { get; set; }
-
     public string? Description { get; set; }
 
     public virtual ICollection<ConfigurationRam> ConfigurationRams { get; set; } = new List<ConfigurationRam>();

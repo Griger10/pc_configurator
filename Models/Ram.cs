@@ -17,8 +17,6 @@ public partial class Ram
 
     public int Frequency { get; set; }
 
-    public decimal Price { get; set; }
-
     public virtual ICollection<ConfigurationRam> ConfigurationRams { get; set; } = new List<ConfigurationRam>();
 
     public virtual Manufacturer Manufacturer { get; set; } = null!;

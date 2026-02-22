@@ -17,8 +17,6 @@ public partial class Gpu
 
     public int PowerConsumption { get; set; }
 
-    public decimal Price { get; set; }
-
     public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
     public virtual Manufacturer Manufacturer { get; set; } = null!;

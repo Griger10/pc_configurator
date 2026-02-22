@@ -33,8 +33,7 @@ CREATE TABLE Processors (
     Model NVARCHAR(100) NOT NULL,
     Socket NVARCHAR(50) NOT NULL,
     Cores INT NOT NULL,
-    Frequency DECIMAL(4,2) NOT NULL, -- ГГц
-    Price DECIMAL(10,2) NOT NULL,
+    Frequency DECIMAL(4,2) NOT NULL, -- пїЅпїЅпїЅ
     CONSTRAINT FK_Processors_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -47,8 +46,7 @@ CREATE TABLE Motherboards (
     Socket NVARCHAR(50) NOT NULL,
     Chipset NVARCHAR(50) NOT NULL,
     RAMType NVARCHAR(20) NOT NULL,
-    MaxRAM INT NOT NULL, -- ГБ
-    Price DECIMAL(10,2) NOT NULL,
+    MaxRAM INT NOT NULL, -- пїЅпїЅ
     CONSTRAINT FK_Motherboards_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -59,9 +57,8 @@ CREATE TABLE RAM (
     ManufacturerId INT NOT NULL,
     Model NVARCHAR(100) NOT NULL,
     Type NVARCHAR(20) NOT NULL,
-    Capacity INT NOT NULL, -- ГБ
-    Frequency INT NOT NULL, -- МГц
-    Price DECIMAL(10,2) NOT NULL,
+    Capacity INT NOT NULL, -- пїЅпїЅ
+    Frequency INT NOT NULL, -- пїЅпїЅпїЅ
     CONSTRAINT FK_RAM_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -71,10 +68,9 @@ CREATE TABLE GPUs (
     GPUId INT PRIMARY KEY IDENTITY(1,1),
     ManufacturerId INT NOT NULL,
     Model NVARCHAR(100) NOT NULL,
-    Memory INT NOT NULL, -- ГБ
+    Memory INT NOT NULL, -- пїЅпїЅ
     MemoryType NVARCHAR(20) NOT NULL, -- GDDR6, GDDR6X
-    PowerConsumption INT NOT NULL, -- Вт
-    Price DECIMAL(10,2) NOT NULL,
+    PowerConsumption INT NOT NULL, -- пїЅпїЅ
     CONSTRAINT FK_GPUs_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -85,9 +81,8 @@ CREATE TABLE Storage (
     ManufacturerId INT NOT NULL,
     Model NVARCHAR(100) NOT NULL,
     Type NVARCHAR(20) NOT NULL,
-    Capacity INT NOT NULL, -- ГБ
+    Capacity INT NOT NULL, -- пїЅпїЅ
     Interface NVARCHAR(50) NOT NULL,
-    Price DECIMAL(10,2) NOT NULL,
     CONSTRAINT FK_Storage_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -98,9 +93,8 @@ CREATE TABLE Configurations (
     Name NVARCHAR(100) NOT NULL,
     ProcessorId INT NOT NULL,
     MotherboardId INT NOT NULL,
-    GPUId INT NULL, -- nullable, так как встроенная графика
+    GPUId INT NULL, -- nullable, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     CreatedDate DATETIME NOT NULL DEFAULT GETDATE(),
-    TotalPrice DECIMAL(10,2) NOT NULL DEFAULT 0,
     Description NVARCHAR(500),
     CONSTRAINT FK_Configurations_Processors FOREIGN KEY (ProcessorId) 
         REFERENCES Processors(ProcessorId),
