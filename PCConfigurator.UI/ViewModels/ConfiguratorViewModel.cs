@@ -54,6 +54,13 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
         set => SetProperty(ref _statusMessage, value);
     }
 
+    private bool _isError;
+    public bool IsError
+    {
+        get => _isError;
+        private set => SetProperty(ref _isError, value);
+    }
+
     public AsyncRelayCommand LoadCommand { get; }
     public AsyncRelayCommand SaveCommand { get; }
     public RelayCommand ResetCommand { get; }
@@ -70,50 +77,80 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
 
     private async Task LoadInternalAsync()
     {
-        var processors = await _db.Processors.Include(p => p.Manufacturer).AsNoTracking().OrderBy(p => p.Model).ToListAsync();
-        var motherboards = await _db.Motherboards.Include(m => m.Manufacturer).AsNoTracking().OrderBy(m => m.Model).ToListAsync();
-        var rams = await _db.Rams.Include(r => r.Manufacturer).AsNoTracking().OrderBy(r => r.Model).ToListAsync();
-        var gpus = await _db.Gpus.Include(g => g.Manufacturer).AsNoTracking().OrderBy(g => g.Model).ToListAsync();
-        var storages = await _db.Storages.Include(s => s.Manufacturer).AsNoTracking().OrderBy(s => s.Model).ToListAsync();
+        IsError = false;
+        StatusMessage = string.Empty;
+        try
+        {
+            var processors  = await _db.Processors.Include(p => p.Manufacturer).AsNoTracking().OrderBy(p => p.Model).ToListAsync();
+            var motherboards = await _db.Motherboards.Include(m => m.Manufacturer).AsNoTracking().OrderBy(m => m.Model).ToListAsync();
+            var rams        = await _db.Rams.Include(r => r.Manufacturer).AsNoTracking().OrderBy(r => r.Model).ToListAsync();
+            var gpus        = await _db.Gpus.Include(g => g.Manufacturer).AsNoTracking().OrderBy(g => g.Model).ToListAsync();
+            var storages    = await _db.Storages.Include(s => s.Manufacturer).AsNoTracking().OrderBy(s => s.Model).ToListAsync();
 
-        AvailableProcessors.Clear();
-        foreach (var p in processors) AvailableProcessors.Add(p);
+            AvailableProcessors.Clear();
+            foreach (var p in processors) AvailableProcessors.Add(p);
 
-        AvailableMotherboards.Clear();
-        foreach (var m in motherboards) AvailableMotherboards.Add(m);
+            AvailableMotherboards.Clear();
+            foreach (var m in motherboards) AvailableMotherboards.Add(m);
 
-        AvailableRams.Clear();
-        foreach (var r in rams) AvailableRams.Add(r);
+            AvailableRams.Clear();
+            foreach (var r in rams) AvailableRams.Add(r);
 
-        AvailableGpus.Clear();
-        foreach (var g in gpus) AvailableGpus.Add(g);
+            AvailableGpus.Clear();
+            foreach (var g in gpus) AvailableGpus.Add(g);
 
-        AvailableStorages.Clear();
-        foreach (var s in storages) AvailableStorages.Add(s);
+            AvailableStorages.Clear();
+            foreach (var s in storages) AvailableStorages.Add(s);
+        }
+        catch (Exception ex)
+        {
+            IsError = true;
+            StatusMessage = $"Ошибка загрузки данных: {ex.Message}";
+        }
     }
 
     private async Task SaveAsync()
     {
+        IsError = false;
+        StatusMessage = string.Empty;
+
         if (string.IsNullOrWhiteSpace(ConfigName) || SelectedProcessor is null || SelectedMotherboard is null)
         {
+            IsError = true;
             StatusMessage = "Заполните обязательные поля: название, процессор, материнская плата.";
             return;
         }
 
-        var config = new Configuration
+        if (SelectedProcessor.Socket != SelectedMotherboard.Socket)
         {
-            Name = ConfigName,
-            ProcessorId = SelectedProcessor.ProcessorId,
-            MotherboardId = SelectedMotherboard.MotherboardId,
-            Gpuid = SelectedGpu?.Gpuid,
-            CreatedDate = DateTime.Now
-        };
+            IsError = true;
+            StatusMessage = $"Несовместимые сокеты: процессор использует {SelectedProcessor.Socket}, " +
+                            $"а материнская плата — {SelectedMotherboard.Socket}.";
+            return;
+        }
 
-        _db.Configurations.Add(config);
-        await _db.SaveChangesAsync();
+        try
+        {
+            var config = new Configuration
+            {
+                Name = ConfigName,
+                ProcessorId = SelectedProcessor.ProcessorId,
+                MotherboardId = SelectedMotherboard.MotherboardId,
+                Gpuid = SelectedGpu?.Gpuid,
+                CreatedDate = DateTime.Now
+            };
 
-        StatusMessage = $"Конфигурация \"{ConfigName}\" успешно сохранена!";
-        Reset();
+            _db.Configurations.Add(config);
+            await _db.SaveChangesAsync();
+
+            StatusMessage = $"Конфигурация \"{ConfigName}\" успешно сохранена!";
+            Reset();
+        }
+        catch (Exception ex)
+        {
+            IsError = true;
+            StatusMessage = $"Ошибка при сохранении: {ex.Message}";
+        }
     }
 
     private void Reset()
@@ -122,6 +159,7 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
         SelectedProcessor = null;
         SelectedMotherboard = null;
         SelectedGpu = null;
+        IsError = false;
         StatusMessage = string.Empty;
     }
 }
