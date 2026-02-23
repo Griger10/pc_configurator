@@ -96,9 +96,19 @@
                 <!-- Статусное сообщение -->
                 <TextBlock Text="{Binding StatusMessage}"
                            Margin="0,14,0,0"
-                           Foreground="#2E7D32"
                            FontStyle="Italic"
-                           TextWrapping="Wrap" />
+                           TextWrapping="Wrap">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="#2E7D32" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsError}" Value="True">
+                                    <Setter Property="Foreground" Value="#C62828" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </StackPanel>
         </ScrollViewer>
     </Grid>
