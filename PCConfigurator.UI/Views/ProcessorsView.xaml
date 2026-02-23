@@ -28,10 +28,7 @@
         <!-- Таблица -->
         <DataGrid Grid.Row="1"
                   ItemsSource="{Binding Processors}"
-                  Margin="16"
-                  Visibility="{Binding IsLoading,
-                      Converter={StaticResource BoolToVisibility},
-                      ConverterParameter=Inverse}">
+                  Margin="16">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"             Binding="{Binding ProcessorId}" Width="50" />
                 <DataGridTextColumn Header="Производитель"  Binding="{Binding Manufacturer.Name}" Width="130" />
