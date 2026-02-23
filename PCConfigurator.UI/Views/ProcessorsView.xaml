@@ -1,0 +1,46 @@
+<UserControl x:Class="PCConfigurator.UI.Views.ProcessorsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Border Grid.Row="0" Background="White" Padding="20,14"
+                BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Процессоры" Style="{StaticResource PageTitleStyle}" />
+                <Button Content="Обновить"
+                        Command="{Binding LoadCommand}"
+                        Style="{StaticResource RefreshButtonStyle}"
+                        Margin="16,0,0,0" />
+            </StackPanel>
+        </Border>
+
+        <!-- Индикатор загрузки -->
+        <TextBlock Grid.Row="1"
+                   Text="Загрузка данных..."
+                   Style="{StaticResource LoadingStyle}"
+                   Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}" />
+
+        <!-- Таблица -->
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Processors}"
+                  Margin="16"
+                  Visibility="{Binding IsLoading,
+                      Converter={StaticResource BoolToVisibility},
+                      ConverterParameter=Inverse}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"             Binding="{Binding ProcessorId}" Width="50" />
+                <DataGridTextColumn Header="Производитель"  Binding="{Binding Manufacturer.Name}" Width="130" />
+                <DataGridTextColumn Header="Модель"         Binding="{Binding Model}" Width="*" />
+                <DataGridTextColumn Header="Сокет"          Binding="{Binding Socket}" Width="90" />
+                <DataGridTextColumn Header="Ядра"           Binding="{Binding Cores}" Width="60" />
+                <DataGridTextColumn Header="Частота, ГГц"   Binding="{Binding Frequency, StringFormat=F2}" Width="110" />
+                <DataGridTextColumn Header="Цена, ₽"        Binding="{Binding Price, StringFormat=N2}" Width="110" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
