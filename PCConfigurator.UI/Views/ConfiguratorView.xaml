@@ -65,7 +65,7 @@
                 <TextBlock Text="Видеокарта" FontWeight="SemiBold" Margin="0,0,0,4" />
                 <ComboBox ItemsSource="{Binding AvailableGpus}"
                           SelectedItem="{Binding SelectedGpu}"
-                          Padding="8,6" Margin="0,0,0,24">
+                          Padding="8,6" Margin="0,0,0,16">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -79,6 +79,72 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
+
+                <!-- Оперативная память (необязательно) -->
+                <TextBlock Text="Оперативная память" FontWeight="SemiBold" Margin="0,0,0,4" />
+                <Grid Margin="0,0,0,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Grid.Column="0"
+                              ItemsSource="{Binding AvailableRams}"
+                              SelectedItem="{Binding SelectedRam}"
+                              Padding="8,6">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding Manufacturer.Name}" />
+                                    <Run Text=" " />
+                                    <Run Text="{Binding Model}" />
+                                    <Run Text=" (" />
+                                    <Run Text="{Binding Capacity}" />
+                                    <Run Text=" ГБ " />
+                                    <Run Text="{Binding Type}" />
+                                    <Run Text=")" />
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Grid.Column="1" Text="Кол-во:" VerticalAlignment="Center" Margin="8,0,6,0" Foreground="#555" />
+                    <TextBox Grid.Column="2"
+                             Text="{Binding RamQuantity, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="8,6" BorderBrush="#C0C0C8" BorderThickness="1" />
+                </Grid>
+
+                <!-- Накопитель (необязательно) -->
+                <TextBlock Text="Накопитель" FontWeight="SemiBold" Margin="0,8,0,4" />
+                <Grid Margin="0,0,0,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Grid.Column="0"
+                              ItemsSource="{Binding AvailableStorages}"
+                              SelectedItem="{Binding SelectedStorage}"
+                              Padding="8,6">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding Manufacturer.Name}" />
+                                    <Run Text=" " />
+                                    <Run Text="{Binding Model}" />
+                                    <Run Text=" (" />
+                                    <Run Text="{Binding Capacity}" />
+                                    <Run Text=" ГБ " />
+                                    <Run Text="{Binding Type}" />
+                                    <Run Text=")" />
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Grid.Column="1" Text="Кол-во:" VerticalAlignment="Center" Margin="8,0,6,0" Foreground="#555" />
+                    <TextBox Grid.Column="2"
+                             Text="{Binding StorageQuantity, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="8,6" BorderBrush="#C0C0C8" BorderThickness="1" />
+                </Grid>
 
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal">

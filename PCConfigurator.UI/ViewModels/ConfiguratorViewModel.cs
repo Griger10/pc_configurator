@@ -39,6 +39,34 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
         set => SetProperty(ref _selectedGpu, value);
     }
 
+    private Ram? _selectedRam;
+    public Ram? SelectedRam
+    {
+        get => _selectedRam;
+        set => SetProperty(ref _selectedRam, value);
+    }
+
+    private int _ramQuantity = 1;
+    public int RamQuantity
+    {
+        get => _ramQuantity;
+        set => SetProperty(ref _ramQuantity, value);
+    }
+
+    private Storage? _selectedStorage;
+    public Storage? SelectedStorage
+    {
+        get => _selectedStorage;
+        set => SetProperty(ref _selectedStorage, value);
+    }
+
+    private int _storageQuantity = 1;
+    public int StorageQuantity
+    {
+        get => _storageQuantity;
+        set => SetProperty(ref _storageQuantity, value);
+    }
+
     // Метаданные конфигурации
     private string _configName = string.Empty;
     public string ConfigName
@@ -129,6 +157,14 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
             return;
         }
 
+        if (SelectedRam is not null && SelectedRam.Type != SelectedMotherboard.Ramtype)
+        {
+            IsError = true;
+            StatusMessage = $"Несовместимая оперативная память: планки {SelectedRam.Type}, " +
+                            $"а материнская плата поддерживает {SelectedMotherboard.Ramtype}.";
+            return;
+        }
+
         try
         {
             var config = new Configuration
@@ -142,6 +178,29 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
 
             _db.Configurations.Add(config);
             await _db.SaveChangesAsync();
+
+            if (SelectedRam is not null)
+            {
+                _db.ConfigurationRams.Add(new ConfigurationRam
+                {
+                    ConfigurationId = config.ConfigurationId,
+                    Ramid = SelectedRam.Ramid,
+                    Quantity = Math.Max(1, RamQuantity)
+                });
+            }
+
+            if (SelectedStorage is not null)
+            {
+                _db.ConfigurationStorages.Add(new ConfigurationStorage
+                {
+                    ConfigurationId = config.ConfigurationId,
+                    StorageId = SelectedStorage.StorageId,
+                    Quantity = Math.Max(1, StorageQuantity)
+                });
+            }
+
+            if (SelectedRam is not null || SelectedStorage is not null)
+                await _db.SaveChangesAsync();
 
             StatusMessage = $"Конфигурация \"{ConfigName}\" успешно сохранена!";
             Reset();
@@ -159,6 +218,10 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
         SelectedProcessor = null;
         SelectedMotherboard = null;
         SelectedGpu = null;
+        SelectedRam = null;
+        RamQuantity = 1;
+        SelectedStorage = null;
+        StorageQuantity = 1;
         IsError = false;
         StatusMessage = string.Empty;
     }
