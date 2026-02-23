@@ -27,12 +27,14 @@
                   ItemsSource="{Binding Configurations}"
                   Margin="16">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID"              Binding="{Binding ConfigurationId}" Width="50" />
-                <DataGridTextColumn Header="Название"        Binding="{Binding Name}" Width="160" />
-                <DataGridTextColumn Header="Процессор"       Binding="{Binding Processor.Model}" Width="*" />
-                <DataGridTextColumn Header="Материнская плата" Binding="{Binding Motherboard.Model}" Width="*" />
-                <DataGridTextColumn Header="Видеокарта"      Binding="{Binding Gpu.Model}" Width="*" />
-                <DataGridTextColumn Header="Дата"            Binding="{Binding CreatedDate, StringFormat=dd.MM.yyyy}" Width="90" />
+                <DataGridTextColumn Header="ID"                Binding="{Binding ConfigurationId}" Width="45" />
+                <DataGridTextColumn Header="Название"          Binding="{Binding Name}"            Width="140" />
+                <DataGridTextColumn Header="Процессор"         Binding="{Binding Processor}"       Width="*" />
+                <DataGridTextColumn Header="Материнская плата" Binding="{Binding Motherboard}"     Width="*" />
+                <DataGridTextColumn Header="Видеокарта"        Binding="{Binding Gpu}"             Width="*" />
+                <DataGridTextColumn Header="Оперативная память" Binding="{Binding Ram}"            Width="*" />
+                <DataGridTextColumn Header="Накопитель"        Binding="{Binding Storage}"         Width="*" />
+                <DataGridTextColumn Header="Дата"              Binding="{Binding CreatedDate}"     Width="90" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
