@@ -1,0 +1,40 @@
+<UserControl x:Class="PCConfigurator.UI.Views.StorageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" Padding="20,14"
+                BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Накопители" Style="{StaticResource PageTitleStyle}" />
+                <Button Content="Обновить"
+                        Command="{Binding LoadCommand}"
+                        Style="{StaticResource RefreshButtonStyle}"
+                        Margin="16,0,0,0" />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Grid.Row="1"
+                   Text="Загрузка данных..."
+                   Style="{StaticResource LoadingStyle}"
+                   Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}" />
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Storages}"
+                  Margin="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"             Binding="{Binding StorageId}" Width="50" />
+                <DataGridTextColumn Header="Производитель"  Binding="{Binding Manufacturer.Name}" Width="130" />
+                <DataGridTextColumn Header="Модель"         Binding="{Binding Model}" Width="*" />
+                <DataGridTextColumn Header="Тип"            Binding="{Binding Type}" Width="60" />
+                <DataGridTextColumn Header="Объём, ГБ"      Binding="{Binding Capacity}" Width="90" />
+                <DataGridTextColumn Header="Интерфейс"      Binding="{Binding Interface}" Width="100" />
+                <DataGridTextColumn Header="Цена, ₽"        Binding="{Binding Price, StringFormat=N2}" Width="110" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

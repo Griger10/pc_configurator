@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>Курсовой_Конфигуратор_ПК</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -11,6 +10,12 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Data\" />
+    <!-- Исключаем WPF-проект, чтобы SDK не подхватывал его файлы -->
+    <Compile Remove="PCConfigurator.UI\**" />
+    <None Remove="PCConfigurator.UI\**" />
+    <Content Remove="PCConfigurator.UI\**" />
+    <EmbeddedResource Remove="PCConfigurator.UI\**" />
+    <Page Remove="PCConfigurator.UI\**" />
   </ItemGroup>
 
   <ItemGroup>

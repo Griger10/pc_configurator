@@ -1,0 +1,41 @@
+<UserControl x:Class="PCConfigurator.UI.Views.MotherboardsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" Padding="20,14"
+                BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Материнские платы" Style="{StaticResource PageTitleStyle}" />
+                <Button Content="Обновить"
+                        Command="{Binding LoadCommand}"
+                        Style="{StaticResource RefreshButtonStyle}"
+                        Margin="16,0,0,0" />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Grid.Row="1"
+                   Text="Загрузка данных..."
+                   Style="{StaticResource LoadingStyle}"
+                   Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}" />
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Motherboards}"
+                  Margin="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"              Binding="{Binding MotherboardId}" Width="50" />
+                <DataGridTextColumn Header="Производитель"   Binding="{Binding Manufacturer.Name}" Width="120" />
+                <DataGridTextColumn Header="Модель"          Binding="{Binding Model}" Width="*" />
+                <DataGridTextColumn Header="Сокет"           Binding="{Binding Socket}" Width="90" />
+                <DataGridTextColumn Header="Чипсет"          Binding="{Binding Chipset}" Width="100" />
+                <DataGridTextColumn Header="Тип RAM"         Binding="{Binding Ramtype}" Width="80" />
+                <DataGridTextColumn Header="Макс. RAM, ГБ"   Binding="{Binding MaxRam}" Width="100" />
+                <DataGridTextColumn Header="Цена, ₽"         Binding="{Binding Price, StringFormat=N2}" Width="110" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
