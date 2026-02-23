@@ -36,9 +36,7 @@
                                 <Run Text="{Binding Model}" />
                                 <Run Text=" (" />
                                 <Run Text="{Binding Socket}" />
-                                <Run Text=", " />
-                                <Run Text="{Binding Price, StringFormat=N0}" />
-                                <Run Text=" ₽)" />
+                                <Run Text=")" />
                             </TextBlock>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
@@ -57,9 +55,7 @@
                                 <Run Text="{Binding Model}" />
                                 <Run Text=" (" />
                                 <Run Text="{Binding Socket}" />
-                                <Run Text=", " />
-                                <Run Text="{Binding Price, StringFormat=N0}" />
-                                <Run Text=" ₽)" />
+                                <Run Text=")" />
                             </TextBlock>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
@@ -78,23 +74,11 @@
                                 <Run Text="{Binding Model}" />
                                 <Run Text=" (" />
                                 <Run Text="{Binding Memory}" />
-                                <Run Text=" ГБ, " />
-                                <Run Text="{Binding Price, StringFormat=N0}" />
-                                <Run Text=" ₽)" />
+                                <Run Text=" ГБ)" />
                             </TextBlock>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-
-                <!-- Итоговая цена -->
-                <Border Background="#EEF4FF" CornerRadius="6" Padding="16,12" Margin="0,0,0,20">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Итоговая цена: " FontWeight="SemiBold" FontSize="16" />
-                        <TextBlock Text="{Binding TotalPrice, StringFormat=N2}"
-                                   FontWeight="Bold" FontSize="16" Foreground="#4A90D9" />
-                        <TextBlock Text=" ₽" FontSize="16" />
-                    </StackPanel>
-                </Border>
 
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal">

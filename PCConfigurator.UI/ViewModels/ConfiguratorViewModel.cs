@@ -22,21 +22,21 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
     public Processor? SelectedProcessor
     {
         get => _selectedProcessor;
-        set { SetProperty(ref _selectedProcessor, value); RecalculatePrice(); }
+        set => SetProperty(ref _selectedProcessor, value);
     }
 
     private Motherboard? _selectedMotherboard;
     public Motherboard? SelectedMotherboard
     {
         get => _selectedMotherboard;
-        set { SetProperty(ref _selectedMotherboard, value); RecalculatePrice(); }
+        set => SetProperty(ref _selectedMotherboard, value);
     }
 
     private Gpu? _selectedGpu;
     public Gpu? SelectedGpu
     {
         get => _selectedGpu;
-        set { SetProperty(ref _selectedGpu, value); RecalculatePrice(); }
+        set => SetProperty(ref _selectedGpu, value);
     }
 
     // Метаданные конфигурации
@@ -45,13 +45,6 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
     {
         get => _configName;
         set => SetProperty(ref _configName, value);
-    }
-
-    private decimal _totalPrice;
-    public decimal TotalPrice
-    {
-        get => _totalPrice;
-        private set => SetProperty(ref _totalPrice, value);
     }
 
     private string _statusMessage = string.Empty;
@@ -99,13 +92,6 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
         foreach (var s in storages) AvailableStorages.Add(s);
     }
 
-    private void RecalculatePrice()
-    {
-        TotalPrice = (SelectedProcessor?.Price ?? 0)
-                   + (SelectedMotherboard?.Price ?? 0)
-                   + (SelectedGpu?.Price ?? 0);
-    }
-
     private async Task SaveAsync()
     {
         if (string.IsNullOrWhiteSpace(ConfigName) || SelectedProcessor is null || SelectedMotherboard is null)
@@ -120,7 +106,6 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
             ProcessorId = SelectedProcessor.ProcessorId,
             MotherboardId = SelectedMotherboard.MotherboardId,
             Gpuid = SelectedGpu?.Gpuid,
-            TotalPrice = TotalPrice,
             CreatedDate = DateTime.Now
         };
 
@@ -137,7 +122,6 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
         SelectedProcessor = null;
         SelectedMotherboard = null;
         SelectedGpu = null;
-        TotalPrice = 0;
         StatusMessage = string.Empty;
     }
 }

@@ -33,7 +33,6 @@
                 <DataGridTextColumn Header="Память, ГБ"     Binding="{Binding Memory}" Width="100" />
                 <DataGridTextColumn Header="Тип памяти"     Binding="{Binding MemoryType}" Width="100" />
                 <DataGridTextColumn Header="TDP, Вт"        Binding="{Binding PowerConsumption}" Width="80" />
-                <DataGridTextColumn Header="Цена, ₽"        Binding="{Binding Price, StringFormat=N2}" Width="110" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

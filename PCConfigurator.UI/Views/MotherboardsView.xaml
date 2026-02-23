@@ -34,7 +34,6 @@
                 <DataGridTextColumn Header="Чипсет"          Binding="{Binding Chipset}" Width="100" />
                 <DataGridTextColumn Header="Тип RAM"         Binding="{Binding Ramtype}" Width="80" />
                 <DataGridTextColumn Header="Макс. RAM, ГБ"   Binding="{Binding MaxRam}" Width="100" />
-                <DataGridTextColumn Header="Цена, ₽"         Binding="{Binding Price, StringFormat=N2}" Width="110" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

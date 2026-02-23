@@ -32,7 +32,6 @@
                 <DataGridTextColumn Header="Процессор"       Binding="{Binding Processor.Model}" Width="*" />
                 <DataGridTextColumn Header="Материнская плата" Binding="{Binding Motherboard.Model}" Width="*" />
                 <DataGridTextColumn Header="Видеокарта"      Binding="{Binding Gpu.Model}" Width="*" />
-                <DataGridTextColumn Header="Итого, ₽"        Binding="{Binding TotalPrice, StringFormat=N2}" Width="110" />
                 <DataGridTextColumn Header="Дата"            Binding="{Binding CreatedDate, StringFormat=dd.MM.yyyy}" Width="90" />
             </DataGrid.Columns>
         </DataGrid>

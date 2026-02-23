@@ -50,7 +50,6 @@ public partial class PCConfiguratorContext : DbContext
             entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.Gpuid).HasColumnName("GPUId");
             entity.Property(e => e.Name).HasMaxLength(100);
-            entity.Property(e => e.TotalPrice).HasColumnType("decimal(10, 2)");
 
             entity.HasOne(d => d.Gpu).WithMany(p => p.Configurations)
                 .HasForeignKey(d => d.Gpuid)
@@ -114,7 +113,6 @@ public partial class PCConfiguratorContext : DbContext
             entity.Property(e => e.Gpuid).HasColumnName("GPUId");
             entity.Property(e => e.MemoryType).HasMaxLength(20);
             entity.Property(e => e.Model).HasMaxLength(100);
-            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
 
             entity.HasOne(d => d.Manufacturer).WithMany(p => p.Gpus)
                 .HasForeignKey(d => d.ManufacturerId)
@@ -137,7 +135,6 @@ public partial class PCConfiguratorContext : DbContext
             entity.Property(e => e.Chipset).HasMaxLength(50);
             entity.Property(e => e.MaxRam).HasColumnName("MaxRAM");
             entity.Property(e => e.Model).HasMaxLength(100);
-            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.Ramtype)
                 .HasMaxLength(20)
                 .HasColumnName("RAMType");
@@ -154,7 +151,6 @@ public partial class PCConfiguratorContext : DbContext
 
             entity.Property(e => e.Frequency).HasColumnType("decimal(4, 2)");
             entity.Property(e => e.Model).HasMaxLength(100);
-            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.Socket).HasMaxLength(50);
 
             entity.HasOne(d => d.Manufacturer).WithMany(p => p.Processors)
@@ -170,7 +166,6 @@ public partial class PCConfiguratorContext : DbContext
 
             entity.Property(e => e.Ramid).HasColumnName("RAMId");
             entity.Property(e => e.Model).HasMaxLength(100);
-            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.Type).HasMaxLength(20);
 
             entity.HasOne(d => d.Manufacturer).WithMany(p => p.Rams)
@@ -186,7 +181,6 @@ public partial class PCConfiguratorContext : DbContext
 
             entity.Property(e => e.Interface).HasMaxLength(50);
             entity.Property(e => e.Model).HasMaxLength(100);
-            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.Type).HasMaxLength(20);
 
             entity.HasOne(d => d.Manufacturer).WithMany(p => p.Storages)

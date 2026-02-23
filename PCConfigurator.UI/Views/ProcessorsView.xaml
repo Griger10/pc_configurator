@@ -39,7 +39,6 @@
                 <DataGridTextColumn Header="Сокет"          Binding="{Binding Socket}" Width="90" />
                 <DataGridTextColumn Header="Ядра"           Binding="{Binding Cores}" Width="60" />
                 <DataGridTextColumn Header="Частота, ГГц"   Binding="{Binding Frequency, StringFormat=F2}" Width="110" />
-                <DataGridTextColumn Header="Цена, ₽"        Binding="{Binding Price, StringFormat=N2}" Width="110" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

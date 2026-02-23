@@ -33,7 +33,6 @@
                 <DataGridTextColumn Header="Тип"            Binding="{Binding Type}" Width="60" />
                 <DataGridTextColumn Header="Объём, ГБ"      Binding="{Binding Capacity}" Width="90" />
                 <DataGridTextColumn Header="Интерфейс"      Binding="{Binding Interface}" Width="100" />
-                <DataGridTextColumn Header="Цена, ₽"        Binding="{Binding Price, StringFormat=N2}" Width="110" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
