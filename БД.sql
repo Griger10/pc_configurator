@@ -33,7 +33,7 @@ CREATE TABLE Processors (
     Model NVARCHAR(100) NOT NULL,
     Socket NVARCHAR(50) NOT NULL,
     Cores INT NOT NULL,
-    Frequency DECIMAL(4,2) NOT NULL, -- ���
+    Frequency DECIMAL(4,2) NOT NULL,
     CONSTRAINT FK_Processors_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -46,7 +46,7 @@ CREATE TABLE Motherboards (
     Socket NVARCHAR(50) NOT NULL,
     Chipset NVARCHAR(50) NOT NULL,
     RAMType NVARCHAR(20) NOT NULL,
-    MaxRAM INT NOT NULL, -- ��
+    MaxRAM INT NOT NULL,
     CONSTRAINT FK_Motherboards_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -57,8 +57,8 @@ CREATE TABLE RAM (
     ManufacturerId INT NOT NULL,
     Model NVARCHAR(100) NOT NULL,
     Type NVARCHAR(20) NOT NULL,
-    Capacity INT NOT NULL, -- ��
-    Frequency INT NOT NULL, -- ���
+    Capacity INT NOT NULL,
+    Frequency INT NOT NULL,
     CONSTRAINT FK_RAM_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -68,9 +68,9 @@ CREATE TABLE GPUs (
     GPUId INT PRIMARY KEY IDENTITY(1,1),
     ManufacturerId INT NOT NULL,
     Model NVARCHAR(100) NOT NULL,
-    Memory INT NOT NULL, -- ��
-    MemoryType NVARCHAR(20) NOT NULL, -- GDDR6, GDDR6X
-    PowerConsumption INT NOT NULL, -- ��
+    Memory INT NOT NULL,
+    MemoryType NVARCHAR(20) NOT NULL,
+    PowerConsumption INT NOT NULL,
     CONSTRAINT FK_GPUs_Manufacturers FOREIGN KEY (ManufacturerId) 
         REFERENCES Manufacturers(ManufacturerId) ON DELETE CASCADE
 );
@@ -93,7 +93,7 @@ CREATE TABLE Configurations (
     Name NVARCHAR(100) NOT NULL,
     ProcessorId INT NOT NULL,
     MotherboardId INT NOT NULL,
-    GPUId INT NULL, -- nullable, ��� ��� ���������� �������
+    GPUId INT NULL,
     CreatedDate DATETIME NOT NULL DEFAULT GETDATE(),
     Description NVARCHAR(500),
     CONSTRAINT FK_Configurations_Processors FOREIGN KEY (ProcessorId) 

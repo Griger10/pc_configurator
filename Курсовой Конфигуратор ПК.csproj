@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Data\" />
-    <!-- Исключаем WPF-проект, чтобы SDK не подхватывал его файлы -->
     <Compile Remove="PCConfigurator.UI\**" />
     <None Remove="PCConfigurator.UI\**" />
     <Content Remove="PCConfigurator.UI\**" />
