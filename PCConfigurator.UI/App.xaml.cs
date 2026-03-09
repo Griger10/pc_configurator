@@ -43,6 +43,14 @@ public partial class App : Application
 
         _serviceProvider = services.BuildServiceProvider();
 
+        // Авто-применение миграций при старте: создаёт БД если не существует,
+        // применяет все ещё не применённые миграции
+        using (var scope = _serviceProvider.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<PCConfiguratorContext>();
+            db.Database.Migrate();
+        }
+
         var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
         mainWindow.Show();
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Курсовой_Конфигуратор_ПК.Models;
 
-public partial class Configuration
+public class Configuration
 {
     public int ConfigurationId { get; set; }
 
@@ -17,6 +17,9 @@ public partial class Configuration
 
     public DateTime CreatedDate { get; set; }
 
+    /// <summary>Пользователь, создавший конфигурацию (nullable — для обратной совместимости)</summary>
+    public int? UserId { get; set; }
+
     public virtual ICollection<ConfigurationRam> ConfigurationRams { get; set; } = new List<ConfigurationRam>();
 
     public virtual ICollection<ConfigurationStorage> ConfigurationStorages { get; set; } = new List<ConfigurationStorage>();
@@ -26,4 +29,6 @@ public partial class Configuration
     public virtual Motherboard Motherboard { get; set; } = null!;
 
     public virtual Processor Processor { get; set; } = null!;
+
+    public virtual User? User { get; set; }
 }
