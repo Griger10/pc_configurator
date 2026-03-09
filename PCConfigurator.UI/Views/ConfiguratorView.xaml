@@ -8,29 +8,45 @@
         </Grid.RowDefinitions>
 
         <!-- Заголовок -->
-        <Border Grid.Row="0" Background="White" Padding="20,14"
-                BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+        <Border Grid.Row="0" Background="{StaticResource BgSurfaceBrush}" Padding="20,14"
+                BorderBrush="{StaticResource CyanBrush}" BorderThickness="0,0,0,1">
             <TextBlock Text="Новая сборка" Style="{StaticResource PageTitleStyle}" />
         </Border>
 
         <!-- Форма -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                      Background="{StaticResource BgMainBrush}">
             <StackPanel Margin="24" MaxWidth="560">
 
                 <!-- Название конфигурации -->
-                <TextBlock Text="Название конфигурации *" FontWeight="SemiBold" Margin="0,0,0,4" />
+                <TextBlock Text="Название конфигурации *"
+                           FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,0,0,4" />
                 <TextBox Text="{Binding ConfigName, UpdateSourceTrigger=PropertyChanged}"
                          Padding="8,6" Margin="0,0,0,16"
-                         BorderBrush="#C0C0C8" BorderThickness="1" />
+                         Background="{StaticResource BgRowBrush}"
+                         Foreground="{StaticResource TextPrimaryBrush}"
+                         BorderBrush="{StaticResource BorderDimBrush}"
+                         CaretBrush="{StaticResource CyanBrush}"
+                         FontFamily="Consolas" FontSize="12"
+                         BorderThickness="1" />
 
                 <!-- Процессор -->
-                <TextBlock Text="Процессор *" FontWeight="SemiBold" Margin="0,0,0,4" />
+                <TextBlock Text="Процессор *"
+                           FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,0,0,4" />
                 <ComboBox ItemsSource="{Binding AvailableProcessors}"
                           SelectedItem="{Binding SelectedProcessor}"
-                          Padding="8,6" Margin="0,0,0,16">
+                          Padding="8,6" Margin="0,0,0,16"
+                          Background="{StaticResource BgRowBrush}"
+                          Foreground="{StaticResource TextPrimaryBrush}"
+                          BorderBrush="{StaticResource BorderDimBrush}"
+                          FontFamily="Consolas" FontSize="12">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock>
+                            <TextBlock Foreground="{StaticResource TextPrimaryBrush}" FontFamily="Consolas">
                                 <Run Text="{Binding Manufacturer.Name}" />
                                 <Run Text=" " />
                                 <Run Text="{Binding Model}" />
@@ -43,13 +59,20 @@
                 </ComboBox>
 
                 <!-- Материнская плата -->
-                <TextBlock Text="Материнская плата *" FontWeight="SemiBold" Margin="0,0,0,4" />
+                <TextBlock Text="Материнская плата *"
+                           FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,0,0,4" />
                 <ComboBox ItemsSource="{Binding AvailableMotherboards}"
                           SelectedItem="{Binding SelectedMotherboard}"
-                          Padding="8,6" Margin="0,0,0,16">
+                          Padding="8,6" Margin="0,0,0,16"
+                          Background="{StaticResource BgRowBrush}"
+                          Foreground="{StaticResource TextPrimaryBrush}"
+                          BorderBrush="{StaticResource BorderDimBrush}"
+                          FontFamily="Consolas" FontSize="12">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock>
+                            <TextBlock Foreground="{StaticResource TextPrimaryBrush}" FontFamily="Consolas">
                                 <Run Text="{Binding Manufacturer.Name}" />
                                 <Run Text=" " />
                                 <Run Text="{Binding Model}" />
@@ -62,13 +85,20 @@
                 </ComboBox>
 
                 <!-- Видеокарта (необязательно) -->
-                <TextBlock Text="Видеокарта" FontWeight="SemiBold" Margin="0,0,0,4" />
+                <TextBlock Text="Видеокарта"
+                           FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,0,0,4" />
                 <ComboBox ItemsSource="{Binding AvailableGpus}"
                           SelectedItem="{Binding SelectedGpu}"
-                          Padding="8,6" Margin="0,0,0,16">
+                          Padding="8,6" Margin="0,0,0,16"
+                          Background="{StaticResource BgRowBrush}"
+                          Foreground="{StaticResource TextPrimaryBrush}"
+                          BorderBrush="{StaticResource BorderDimBrush}"
+                          FontFamily="Consolas" FontSize="12">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock>
+                            <TextBlock Foreground="{StaticResource TextPrimaryBrush}" FontFamily="Consolas">
                                 <Run Text="{Binding Manufacturer.Name}" />
                                 <Run Text=" " />
                                 <Run Text="{Binding Model}" />
@@ -81,7 +111,10 @@
                 </ComboBox>
 
                 <!-- Оперативная память (необязательно) -->
-                <TextBlock Text="Оперативная память" FontWeight="SemiBold" Margin="0,0,0,4" />
+                <TextBlock Text="Оперативная память"
+                           FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,0,0,4" />
                 <Grid Margin="0,0,0,4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -91,10 +124,14 @@
                     <ComboBox Grid.Column="0"
                               ItemsSource="{Binding AvailableRams}"
                               SelectedItem="{Binding SelectedRam}"
-                              Padding="8,6">
+                              Padding="8,6"
+                              Background="{StaticResource BgRowBrush}"
+                              Foreground="{StaticResource TextPrimaryBrush}"
+                              BorderBrush="{StaticResource BorderDimBrush}"
+                              FontFamily="Consolas" FontSize="12">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock>
+                                <TextBlock Foreground="{StaticResource TextPrimaryBrush}" FontFamily="Consolas">
                                     <Run Text="{Binding Manufacturer.Name}" />
                                     <Run Text=" " />
                                     <Run Text="{Binding Model}" />
@@ -107,14 +144,26 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <TextBlock Grid.Column="1" Text="Кол-во:" VerticalAlignment="Center" Margin="8,0,6,0" Foreground="#555" />
+                    <TextBlock Grid.Column="1" Text="Кол-во:"
+                               VerticalAlignment="Center" Margin="8,0,6,0"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               FontFamily="Consolas" FontSize="11" />
                     <TextBox Grid.Column="2"
                              Text="{Binding RamQuantity, UpdateSourceTrigger=PropertyChanged}"
-                             Padding="8,6" BorderBrush="#C0C0C8" BorderThickness="1" />
+                             Padding="8,6"
+                             Background="{StaticResource BgRowBrush}"
+                             Foreground="{StaticResource TextPrimaryBrush}"
+                             BorderBrush="{StaticResource BorderDimBrush}"
+                             CaretBrush="{StaticResource CyanBrush}"
+                             FontFamily="Consolas"
+                             BorderThickness="1" />
                 </Grid>
 
                 <!-- Накопитель (необязательно) -->
-                <TextBlock Text="Накопитель" FontWeight="SemiBold" Margin="0,8,0,4" />
+                <TextBlock Text="Накопитель"
+                           FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,8,0,4" />
                 <Grid Margin="0,0,0,24">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -124,10 +173,14 @@
                     <ComboBox Grid.Column="0"
                               ItemsSource="{Binding AvailableStorages}"
                               SelectedItem="{Binding SelectedStorage}"
-                              Padding="8,6">
+                              Padding="8,6"
+                              Background="{StaticResource BgRowBrush}"
+                              Foreground="{StaticResource TextPrimaryBrush}"
+                              BorderBrush="{StaticResource BorderDimBrush}"
+                              FontFamily="Consolas" FontSize="12">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock>
+                                <TextBlock Foreground="{StaticResource TextPrimaryBrush}" FontFamily="Consolas">
                                     <Run Text="{Binding Manufacturer.Name}" />
                                     <Run Text=" " />
                                     <Run Text="{Binding Model}" />
@@ -140,36 +193,45 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <TextBlock Grid.Column="1" Text="Кол-во:" VerticalAlignment="Center" Margin="8,0,6,0" Foreground="#555" />
+                    <TextBlock Grid.Column="1" Text="Кол-во:"
+                               VerticalAlignment="Center" Margin="8,0,6,0"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               FontFamily="Consolas" FontSize="11" />
                     <TextBox Grid.Column="2"
                              Text="{Binding StorageQuantity, UpdateSourceTrigger=PropertyChanged}"
-                             Padding="8,6" BorderBrush="#C0C0C8" BorderThickness="1" />
+                             Padding="8,6"
+                             Background="{StaticResource BgRowBrush}"
+                             Foreground="{StaticResource TextPrimaryBrush}"
+                             BorderBrush="{StaticResource BorderDimBrush}"
+                             CaretBrush="{StaticResource CyanBrush}"
+                             FontFamily="Consolas"
+                             BorderThickness="1" />
                 </Grid>
 
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="Сохранить конфигурацию"
+                    <Button Content="[ СОХРАНИТЬ ]"
                             Command="{Binding SaveCommand}"
                             Style="{StaticResource ActionButtonStyle}"
                             Padding="20,10" Margin="0,0,12,0" />
-                    <Button Content="Сбросить"
+                    <Button Content="[ СБРОСИТЬ ]"
                             Command="{Binding ResetCommand}"
-                            Padding="16,10"
-                            Background="#E0E0E8" Foreground="#333"
-                            BorderThickness="0" Cursor="Hand" />
+                            Style="{StaticResource ResetButtonStyle}"
+                            Padding="16,10" />
                 </StackPanel>
 
                 <!-- Статусное сообщение -->
                 <TextBlock Text="{Binding StatusMessage}"
                            Margin="0,14,0,0"
+                           FontFamily="Consolas" FontSize="11"
                            FontStyle="Italic"
                            TextWrapping="Wrap">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="#2E7D32" />
+                            <Setter Property="Foreground" Value="#00FF88" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsError}" Value="True">
-                                    <Setter Property="Foreground" Value="#C62828" />
+                                    <Setter Property="Foreground" Value="#FF0040" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

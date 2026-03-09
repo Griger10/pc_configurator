@@ -5,7 +5,7 @@
         Height="700" Width="1100"
         MinHeight="500" MinWidth="800"
         WindowStartupLocation="CenterScreen"
-        Background="#F5F5FA">
+        Background="{StaticResource BgMainBrush}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220" />
@@ -13,27 +13,44 @@
         </Grid.ColumnDefinitions>
 
         <!-- Сайдбар -->
-        <Border Grid.Column="0" Background="{StaticResource SidebarBrush}">
+        <Border Grid.Column="0"
+                Background="{StaticResource BgSidebarBrush}"
+                BorderBrush="{StaticResource BorderDimBrush}"
+                BorderThickness="0,0,1,0">
             <DockPanel>
                 <!-- Логотип / заголовок -->
-                <Border DockPanel.Dock="Top" Padding="20,24,20,16">
+                <Border DockPanel.Dock="Top" Padding="20,20,20,16"
+                        BorderBrush="{StaticResource CyanBrush}"
+                        BorderThickness="0,0,0,1">
                     <StackPanel>
-                        <TextBlock Text="&#x1F5A5;" FontSize="28" />
-                        <TextBlock Text="Конфигуратор ПК"
-                                   Foreground="{StaticResource AccentBrush}"
+                        <TextBlock Text="&gt;&gt; PC_CONFIG"
+                                   Foreground="{StaticResource CyanBrush}"
                                    FontSize="15" FontWeight="Bold"
-                                   Margin="0,6,0,0" TextWrapping="Wrap" />
+                                   FontFamily="Consolas">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#00F5FF" BlurRadius="12"
+                                                  ShadowDepth="0" Opacity="0.8" />
+                            </TextBlock.Effect>
+                        </TextBlock>
+                        <TextBlock Text="КОНФИГУРАТОР ПК"
+                                   Foreground="{StaticResource TextDimBrush}"
+                                   FontSize="9" FontFamily="Consolas"
+                                   Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
 
-                <Separator DockPanel.Dock="Top" Background="#313244" Margin="0" />
-
                 <!-- Навигация: каталог компонентов -->
-                <StackPanel DockPanel.Dock="Top" Margin="0,8,0,0">
-                    <TextBlock Text="КОМПОНЕНТЫ"
-                               Foreground="#6C7086"
-                               FontSize="10" FontWeight="Bold"
-                               Margin="20,8,0,4" />
+                <StackPanel DockPanel.Dock="Top" Margin="0,12,0,0">
+                    <TextBlock Text="// КОМПОНЕНТЫ"
+                               Foreground="{StaticResource GreenNeonBrush}"
+                               FontSize="9" FontWeight="Bold"
+                               FontFamily="Consolas"
+                               Margin="20,0,0,6">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#00FF88" BlurRadius="6"
+                                              ShadowDepth="0" Opacity="0.5" />
+                        </TextBlock.Effect>
+                    </TextBlock>
 
                     <Button Content="  Процессоры"
                             Command="{Binding NavigateProcessorsCommand}"
@@ -52,14 +69,24 @@
                             Style="{StaticResource NavButtonStyle}" />
                 </StackPanel>
 
-                <Separator DockPanel.Dock="Top" Background="#313244" Margin="0,8" />
+                <!-- Разделитель -->
+                <Border DockPanel.Dock="Top"
+                        Height="1"
+                        Margin="0,10"
+                        Background="{StaticResource BorderDimBrush}" />
 
                 <!-- Навигация: сборки -->
                 <StackPanel DockPanel.Dock="Top">
-                    <TextBlock Text="СБОРКИ"
-                               Foreground="#6C7086"
-                               FontSize="10" FontWeight="Bold"
-                               Margin="20,0,0,4" />
+                    <TextBlock Text="// СБОРКИ"
+                               Foreground="{StaticResource GreenNeonBrush}"
+                               FontSize="9" FontWeight="Bold"
+                               FontFamily="Consolas"
+                               Margin="20,0,0,6">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#00FF88" BlurRadius="6"
+                                              ShadowDepth="0" Opacity="0.5" />
+                        </TextBlock.Effect>
+                    </TextBlock>
 
                     <Button Content="  Мои конфигурации"
                             Command="{Binding NavigateConfigurationsCommand}"
@@ -68,11 +95,23 @@
                             Command="{Binding NavigateConfiguratorCommand}"
                             Style="{StaticResource NavButtonStyle}" />
                 </StackPanel>
+
+                <!-- Нижняя статусная строка -->
+                <Border DockPanel.Dock="Bottom"
+                        Height="28"
+                        Background="#000005"
+                        BorderBrush="{StaticResource BorderDimBrush}"
+                        BorderThickness="0,1,0,0">
+                    <TextBlock Text="[ SYS_READY ]"
+                               Foreground="{StaticResource TextDimBrush}"
+                               FontSize="8" FontFamily="Consolas"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                </Border>
             </DockPanel>
         </Border>
 
         <!-- Основная область контента -->
-        <!-- DataTemplate в App.xaml автоматически сопоставит ViewModel с нужным View -->
         <ContentControl Grid.Column="1"
                         Content="{Binding CurrentView}"
                         Margin="0" />

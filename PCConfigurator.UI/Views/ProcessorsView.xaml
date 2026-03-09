@@ -8,8 +8,8 @@
         </Grid.RowDefinitions>
 
         <!-- Заголовок -->
-        <Border Grid.Row="0" Background="White" Padding="20,14"
-                BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+        <Border Grid.Row="0" Background="{StaticResource BgSurfaceBrush}" Padding="20,14"
+                BorderBrush="{StaticResource CyanBrush}" BorderThickness="0,0,0,1">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Процессоры" Style="{StaticResource PageTitleStyle}" />
                 <Button Content="Обновить"

@@ -1,43 +1,81 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- Цвета -->
-    <Color x:Key="SidebarColor">#1E1E2E</Color>
-    <Color x:Key="SidebarHoverColor">#313244</Color>
-    <Color x:Key="AccentColor">#89B4FA</Color>
-    <Color x:Key="SidebarTextColor">#CDD6F4</Color>
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--   CYBER TECHNO THEME — PC CONFIGURATOR                 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
 
-    <SolidColorBrush x:Key="SidebarBrush"      Color="{StaticResource SidebarColor}" />
-    <SolidColorBrush x:Key="SidebarHoverBrush" Color="{StaticResource SidebarHoverColor}" />
-    <SolidColorBrush x:Key="AccentBrush"       Color="{StaticResource AccentColor}" />
-    <SolidColorBrush x:Key="SidebarTextBrush"  Color="{StaticResource SidebarTextColor}" />
+    <!-- Цветовая палитра -->
+    <Color x:Key="BgMainColor"        >#010208</Color>
+    <Color x:Key="BgSidebarColor"     >#000005</Color>
+    <Color x:Key="BgSurfaceColor"     >#060D1A</Color>
+    <Color x:Key="BgRowColor"         >#030810</Color>
+    <Color x:Key="BgRowAltColor"      >#050D16</Color>
+
+    <Color x:Key="CyanColor"          >#00F5FF</Color>
+    <Color x:Key="GreenNeonColor"     >#00FF88</Color>
+    <Color x:Key="MagentaColor"       >#FF00C8</Color>
+
+    <Color x:Key="TextPrimaryColor"   >#E0FFFF</Color>
+    <Color x:Key="TextSecondaryColor" >#00D4CC</Color>
+    <Color x:Key="TextDimColor"       >#2A6070</Color>
+    <Color x:Key="BorderDimColor"     >#004050</Color>
+    <Color x:Key="GridLineColor"      >#001820</Color>
+
+    <!-- Кисти -->
+    <SolidColorBrush x:Key="BgMainBrush"        Color="{StaticResource BgMainColor}" />
+    <SolidColorBrush x:Key="BgSidebarBrush"     Color="{StaticResource BgSidebarColor}" />
+    <SolidColorBrush x:Key="BgSurfaceBrush"     Color="{StaticResource BgSurfaceColor}" />
+    <SolidColorBrush x:Key="BgRowBrush"         Color="{StaticResource BgRowColor}" />
+    <SolidColorBrush x:Key="BgRowAltBrush"      Color="{StaticResource BgRowAltColor}" />
+    <SolidColorBrush x:Key="CyanBrush"          Color="{StaticResource CyanColor}" />
+    <SolidColorBrush x:Key="GreenNeonBrush"     Color="{StaticResource GreenNeonColor}" />
+    <SolidColorBrush x:Key="MagentaBrush"       Color="{StaticResource MagentaColor}" />
+    <SolidColorBrush x:Key="TextPrimaryBrush"   Color="{StaticResource TextPrimaryColor}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}" />
+    <SolidColorBrush x:Key="TextDimBrush"       Color="{StaticResource TextDimColor}" />
+    <SolidColorBrush x:Key="BorderDimBrush"     Color="{StaticResource BorderDimColor}" />
+    <SolidColorBrush x:Key="GridLineBrush"      Color="{StaticResource GridLineColor}" />
+
+    <!-- Обратная совместимость -->
+    <SolidColorBrush x:Key="SidebarBrush"       Color="{StaticResource BgSidebarColor}" />
+    <SolidColorBrush x:Key="AccentBrush"        Color="{StaticResource CyanColor}" />
+    <SolidColorBrush x:Key="SidebarTextBrush"   Color="{StaticResource TextSecondaryColor}" />
 
     <!-- Конвертер bool → Visibility -->
     <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
 
-    <!-- Кнопка навигации в сайдбаре -->
+    <!-- ─── Кнопка навигации в сайдбаре ─────────────────────── -->
     <Style x:Key="NavButtonStyle" TargetType="Button">
-        <Setter Property="Foreground"               Value="{StaticResource SidebarTextBrush}" />
-        <Setter Property="Background"               Value="Transparent" />
-        <Setter Property="BorderThickness"          Value="0" />
+        <Setter Property="Foreground"                 Value="{StaticResource TextSecondaryBrush}" />
+        <Setter Property="Background"                 Value="Transparent" />
+        <Setter Property="BorderThickness"            Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="Padding"                  Value="20,12" />
-        <Setter Property="FontSize"                 Value="13" />
-        <Setter Property="Cursor"                   Value="Hand" />
+        <Setter Property="Padding"                    Value="20,11" />
+        <Setter Property="FontSize"                   Value="12" />
+        <Setter Property="FontFamily"                 Value="Consolas" />
+        <Setter Property="Cursor"                     Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                            Padding="{TemplateBinding Padding}">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                    <Border x:Name="Root"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderThickness="2,0,0,0"
+                            BorderBrush="Transparent">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource SidebarHoverBrush}" />
+                            <Setter TargetName="Root" Property="Background"  Value="#0A1A22" />
+                            <Setter TargetName="Root" Property="BorderBrush" Value="{StaticResource CyanBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource CyanBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="{StaticResource AccentBrush}" />
-                            <Setter Property="Foreground" Value="#1E1E2E" />
+                            <Setter TargetName="Root" Property="Background"  Value="#001018" />
+                            <Setter TargetName="Root" Property="BorderBrush" Value="{StaticResource GreenNeonBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource GreenNeonBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -45,33 +83,55 @@
         </Setter>
     </Style>
 
-    <!-- Заголовок страницы -->
+    <!-- ─── Заголовок страницы ───────────────────────────────── -->
     <Style x:Key="PageTitleStyle" TargetType="TextBlock">
-        <Setter Property="FontSize"       Value="22" />
-        <Setter Property="FontWeight"     Value="SemiBold" />
-        <Setter Property="Foreground"     Value="#1E1E2E" />
+        <Setter Property="FontSize"          Value="18" />
+        <Setter Property="FontWeight"        Value="Bold" />
+        <Setter Property="FontFamily"        Value="Consolas" />
+        <Setter Property="Foreground"        Value="{StaticResource CyanBrush}" />
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#00F5FF" BlurRadius="10"
+                                  ShadowDepth="0" Opacity="0.7" />
+            </Setter.Value>
+        </Setter>
     </Style>
 
-    <!-- Кнопка "Обновить" -->
+    <!-- ─── Кнопка "Обновить" ───────────────────────────────── -->
     <Style x:Key="RefreshButtonStyle" TargetType="Button">
-        <Setter Property="Background"      Value="{StaticResource AccentBrush}" />
-        <Setter Property="Foreground"      Value="#1E1E2E" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding"         Value="14,6" />
-        <Setter Property="FontWeight"      Value="SemiBold" />
+        <Setter Property="Background"      Value="Transparent" />
+        <Setter Property="Foreground"      Value="{StaticResource CyanBrush}" />
+        <Setter Property="BorderBrush"     Value="{StaticResource CyanBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding"         Value="14,5" />
+        <Setter Property="FontWeight"      Value="Bold" />
+        <Setter Property="FontFamily"      Value="Consolas" />
+        <Setter Property="FontSize"        Value="11" />
         <Setter Property="Cursor"          Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}"
-                            CornerRadius="4"
+                    <Border x:Name="Root"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="0"
                             Padding="{TemplateBinding Padding}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#74C7EC" />
+                            <Setter TargetName="Root" Property="Background" Value="#00F5FF22" />
+                            <Setter TargetName="Root" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#00F5FF" BlurRadius="14"
+                                                      ShadowDepth="0" Opacity="0.9" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="#00F5FF44" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -79,40 +139,126 @@
         </Setter>
     </Style>
 
-    <!-- Кнопка действия (Сохранить и т.п.) -->
+    <!-- ─── Кнопка действия (Сохранить) ────────────────────── -->
     <Style x:Key="ActionButtonStyle" TargetType="Button" BasedOn="{StaticResource RefreshButtonStyle}" />
 
-    <!-- Стиль DataGrid -->
-    <Style TargetType="DataGrid">
-        <Setter Property="AutoGenerateColumns"     Value="False" />
-        <Setter Property="IsReadOnly"              Value="True" />
-        <Setter Property="CanUserAddRows"          Value="False" />
-        <Setter Property="GridLinesVisibility"     Value="Horizontal" />
-        <Setter Property="HorizontalGridLinesBrush" Value="#E0E0E0" />
-        <Setter Property="AlternatingRowBackground" Value="#F8F8FF" />
-        <Setter Property="RowBackground"           Value="White" />
-        <Setter Property="SelectionMode"           Value="Single" />
-        <Setter Property="ColumnHeaderHeight"      Value="36" />
-        <Setter Property="RowHeight"               Value="32" />
-        <Setter Property="BorderBrush"             Value="#E0E0E0" />
-        <Setter Property="BorderThickness"         Value="1" />
+    <!-- ─── Кнопка "Сбросить" (маджента) ───────────────────── -->
+    <Style x:Key="ResetButtonStyle" TargetType="Button">
+        <Setter Property="Background"      Value="Transparent" />
+        <Setter Property="Foreground"      Value="{StaticResource MagentaBrush}" />
+        <Setter Property="BorderBrush"     Value="{StaticResource MagentaBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding"         Value="14,5" />
+        <Setter Property="FontFamily"      Value="Consolas" />
+        <Setter Property="FontSize"        Value="11" />
+        <Setter Property="Cursor"          Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Root"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="0"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="#FF00C822" />
+                            <Setter TargetName="Root" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#FF00C8" BlurRadius="14"
+                                                      ShadowDepth="0" Opacity="0.9" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Root" Property="Background" Value="#FF00C844" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
-    <!-- Заголовки колонок DataGrid -->
-    <Style TargetType="DataGridColumnHeader">
-        <Setter Property="Background"   Value="#F0F0F5" />
-        <Setter Property="FontWeight"   Value="SemiBold" />
-        <Setter Property="Padding"      Value="8,4" />
-        <Setter Property="BorderBrush"  Value="#D0D0D8" />
-        <Setter Property="BorderThickness" Value="0,0,1,1" />
-    </Style>
-
-    <!-- Текст "Загрузка..." -->
+    <!-- ─── Текст "Загрузка..." ─────────────────────────────── -->
     <Style x:Key="LoadingStyle" TargetType="TextBlock">
-        <Setter Property="FontSize"            Value="16" />
-        <Setter Property="Foreground"          Value="Gray" />
+        <Setter Property="FontSize"            Value="15" />
+        <Setter Property="FontFamily"          Value="Consolas" />
+        <Setter Property="Foreground"          Value="{StaticResource TextSecondaryBrush}" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment"   Value="Center" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#00D4CC" BlurRadius="8" ShadowDepth="0" Opacity="0.6" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ─── DataGrid — общий стиль ───────────────────────────── -->
+    <Style TargetType="DataGrid">
+        <Setter Property="AutoGenerateColumns"      Value="False" />
+        <Setter Property="IsReadOnly"               Value="True" />
+        <Setter Property="CanUserAddRows"           Value="False" />
+        <Setter Property="GridLinesVisibility"      Value="Horizontal" />
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource GridLineBrush}" />
+        <Setter Property="RowBackground"            Value="{StaticResource BgRowBrush}" />
+        <Setter Property="AlternatingRowBackground" Value="{StaticResource BgRowAltBrush}" />
+        <Setter Property="Background"               Value="{StaticResource BgRowBrush}" />
+        <Setter Property="SelectionMode"            Value="Single" />
+        <Setter Property="ColumnHeaderHeight"       Value="36" />
+        <Setter Property="RowHeight"                Value="30" />
+        <Setter Property="BorderBrush"              Value="{StaticResource BorderDimBrush}" />
+        <Setter Property="BorderThickness"          Value="1" />
+        <Setter Property="Foreground"               Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="FontFamily"               Value="Consolas" />
+        <Setter Property="FontSize"                 Value="12" />
+    </Style>
+
+    <!-- ─── Заголовки колонок DataGrid ───────────────────────── -->
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background"      Value="{StaticResource BgSurfaceBrush}" />
+        <Setter Property="Foreground"      Value="{StaticResource CyanBrush}" />
+        <Setter Property="FontWeight"      Value="Bold" />
+        <Setter Property="FontFamily"      Value="Consolas" />
+        <Setter Property="FontSize"        Value="11" />
+        <Setter Property="Padding"         Value="8,4" />
+        <Setter Property="BorderBrush"     Value="{StaticResource CyanBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#00F5FF" BlurRadius="6"
+                                  ShadowDepth="0" Opacity="0.4" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ─── Строки DataGrid ──────────────────────────────────── -->
+    <Style TargetType="DataGridRow">
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#00F5FF1A" />
+                <Setter Property="Foreground" Value="{StaticResource CyanBrush}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#00F5FF0D" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ─── Ячейки DataGrid ──────────────────────────────────── -->
+    <Style TargetType="DataGridCell">
+        <Setter Property="Foreground"      Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background"  Value="Transparent" />
+                <Setter Property="Foreground"  Value="{StaticResource CyanBrush}" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
