@@ -1,23 +1,21 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Курсовой_Конфигуратор_ПК.Models;
 
-public partial class Motherboard
+public partial class Gpu
 {
-    public int MotherboardId { get; set; }
+    public int Gpuid { get; set; }
 
     public int ManufacturerId { get; set; }
 
     public string Model { get; set; } = null!;
 
-    public string Socket { get; set; } = null!;
+    public int Memory { get; set; }
 
-    public string Chipset { get; set; } = null!;
+    public string MemoryType { get; set; } = null!;
 
-    public string Ramtype { get; set; } = null!;
-
-    public int MaxRam { get; set; }
+    public int PowerConsumption { get; set; }
 
     public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 

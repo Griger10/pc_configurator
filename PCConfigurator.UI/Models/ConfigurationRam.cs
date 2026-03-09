@@ -1,19 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Курсовой_Конфигуратор_ПК.Models;
 
-public partial class ConfigurationStorage
+public partial class ConfigurationRam
 {
-    public int ConfigurationStorageId { get; set; }
+    public int ConfigurationRamid { get; set; }
 
     public int ConfigurationId { get; set; }
 
-    public int StorageId { get; set; }
+    public int Ramid { get; set; }
 
     public int Quantity { get; set; }
 
     public virtual Configuration Configuration { get; set; } = null!;
 
-    public virtual Storage Storage { get; set; } = null!;
+    public virtual Ram Ram { get; set; } = null!;
 }
