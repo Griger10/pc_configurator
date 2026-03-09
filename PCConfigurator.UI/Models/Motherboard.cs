@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Курсовой_Конфигуратор_ПК.Models;
 
-public partial class Processor
+public partial class Motherboard
 {
-    public int ProcessorId { get; set; }
+    public int MotherboardId { get; set; }
 
     public int ManufacturerId { get; set; }
 
@@ -13,9 +13,11 @@ public partial class Processor
 
     public string Socket { get; set; } = null!;
 
-    public int Cores { get; set; }
+    public string Chipset { get; set; } = null!;
 
-    public decimal Frequency { get; set; }
+    public string Ramtype { get; set; } = null!;
+
+    public int MaxRam { get; set; }
 
     public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
