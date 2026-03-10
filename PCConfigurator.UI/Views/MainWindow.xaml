@@ -131,7 +131,7 @@
                         <TextBlock FontFamily="Consolas" FontSize="8"
                                    Foreground="{StaticResource CyanBrush}"
                                    HorizontalAlignment="Center">
-                            <Run Text="[ USER: " /><Run Text="{Binding CurrentUserLogin}" /><Run Text=" ]" />
+                            <Run Text="[ USER: " /><Run Text="{Binding CurrentUserLogin, Mode=OneWay}" /><Run Text=" ]" />
                         </TextBlock>
                         <TextBlock Text="[ SYS_READY ]"
                                    Foreground="{StaticResource TextDimBrush}"
