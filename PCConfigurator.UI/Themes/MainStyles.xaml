@@ -196,6 +196,116 @@
         </Setter>
     </Style>
 
+    <!-- ─── ComboBox ────────────────────────────────────────── -->
+    <Style TargetType="ComboBox">
+        <Setter Property="Background"      Value="{StaticResource BgRowBrush}" />
+        <Setter Property="Foreground"      Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="BorderBrush"     Value="{StaticResource BorderDimBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontFamily"      Value="Consolas" />
+        <Setter Property="FontSize"        Value="12" />
+        <Setter Property="Padding"         Value="6,4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <!-- Фон и граница -->
+                        <Border x:Name="Root"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="20" />
+                                </Grid.ColumnDefinitions>
+                                <!-- Выбранный элемент -->
+                                <ContentPresenter Grid.Column="0"
+                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  IsHitTestVisible="False"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="Center" />
+                                <!-- Стрелка -->
+                                <TextBlock Grid.Column="1" Text="▼"
+                                           Foreground="{StaticResource CyanBrush}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           FontSize="8" IsHitTestVisible="False" />
+                            </Grid>
+                        </Border>
+                        <!-- Невидимая кнопка-триггер для открытия -->
+                        <ToggleButton Focusable="False"
+                                      Background="Transparent"
+                                      BorderThickness="0"
+                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay,
+                                                  RelativeSource={RelativeSource TemplatedParent}}"
+                                      ClickMode="Press" />
+                        <!-- Выпадающий список -->
+                        <Popup x:Name="PART_Popup"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               Placement="Bottom"
+                               PopupAnimation="Fade">
+                            <Border Background="{StaticResource BgSurfaceBrush}"
+                                    BorderBrush="{StaticResource CyanBrush}"
+                                    BorderThickness="1"
+                                    MinWidth="{Binding ActualWidth,
+                                               RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                    MaxHeight="220"
+                                    SnapsToDevicePixels="True">
+                                <ScrollViewer>
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Root" Property="BorderBrush"
+                                    Value="{StaticResource CyanBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter TargetName="Root" Property="BorderBrush"
+                                    Value="{StaticResource CyanBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ─── ComboBoxItem ─────────────────────────────────────── -->
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="Background"  Value="Transparent" />
+        <Setter Property="Foreground"  Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="FontFamily"  Value="Consolas" />
+        <Setter Property="FontSize"    Value="12" />
+        <Setter Property="Padding"     Value="8,6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="#00F5FF22" />
+                            <Setter Property="Foreground" Value="{StaticResource CyanBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="#00F5FF33" />
+                            <Setter Property="Foreground" Value="{StaticResource CyanBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- ─── DataGrid — общий стиль ───────────────────────────── -->
     <Style TargetType="DataGrid">
         <Setter Property="AutoGenerateColumns"      Value="False" />
