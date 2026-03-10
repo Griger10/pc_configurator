@@ -30,6 +30,9 @@ public class MainViewModel : ViewModelBase
     /// <summary>Логин текущего пользователя для отображения в сайдбаре</summary>
     public string CurrentUserLogin => _session.Login;
 
+    /// <summary>Срабатывает при выходе — MainWindow подписывается и показывает LoginWindow</summary>
+    public event Action? LogoutRequested;
+
     public RelayCommand NavigateProcessorsCommand { get; }
     public RelayCommand NavigateMotherboardsCommand { get; }
     public RelayCommand NavigateRamCommand { get; }
@@ -38,6 +41,10 @@ public class MainViewModel : ViewModelBase
     public RelayCommand NavigateConfigurationsCommand { get; }
     public RelayCommand NavigateConfiguratorCommand { get; }
     public AsyncRelayCommand ExportToExcelCommand { get; }
+    public RelayCommand LogoutCommand { get; }
+
+    /// <summary>Обновить отображение логина в сайдбаре после повторного входа</summary>
+    public void RefreshUserInfo() => OnPropertyChanged(nameof(CurrentUserLogin));
 
     public MainViewModel(
         ProcessorsViewModel processorsVm,
@@ -68,10 +75,18 @@ public class MainViewModel : ViewModelBase
         NavigateConfigurationsCommand = new RelayCommand(() => Navigate(_configurationsVm));
         NavigateConfiguratorCommand   = new RelayCommand(() => Navigate(_configuratorVm));
         ExportToExcelCommand          = new AsyncRelayCommand(ExportToExcelAsync);
+        LogoutCommand                 = new RelayCommand(Logout);
 
         // Страница по умолчанию
         _currentView = _processorsVm;
         _processorsVm.Load();
+    }
+
+    private void Logout()
+    {
+        _session.Reset();
+        OnPropertyChanged(nameof(CurrentUserLogin));
+        LogoutRequested?.Invoke();
     }
 
     private void Navigate(ViewModelBase viewModel)

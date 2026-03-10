@@ -15,4 +15,11 @@ public class UserSession
 
     /// <summary>Пользователь вошёл в систему</summary>
     public bool IsAuthenticated => UserId > 0;
+
+    public void Reset()
+    {
+        UserId = 0;
+        Login  = "";
+        Role   = "user";
+    }
 }
