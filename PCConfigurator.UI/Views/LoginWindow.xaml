@@ -9,26 +9,10 @@
         BorderBrush="{StaticResource CyanBrush}"
         BorderThickness="1">
 
-    <Grid Margin="32,28,32,28">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="24" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="12" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="12" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="12" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="16" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <StackPanel Margin="40,32,40,32" VerticalAlignment="Center">
 
         <!-- Заголовок -->
-        <TextBlock Grid.Row="0"
-                   Text="&gt;&gt; SYSTEM_LOGIN"
+        <TextBlock Text="&gt;&gt; SYSTEM_LOGIN"
                    FontFamily="Consolas" FontSize="20" FontWeight="Bold"
                    Foreground="{StaticResource CyanBrush}"
                    HorizontalAlignment="Center">
@@ -37,23 +21,18 @@
             </TextBlock.Effect>
         </TextBlock>
 
-        <!-- Подзаголовок -->
-        <TextBlock Grid.Row="1"
-                   Text="PC CONFIGURATOR  v1.0"
+        <TextBlock Text="PC CONFIGURATOR  v1.0"
                    FontFamily="Consolas" FontSize="9"
                    Foreground="{StaticResource TextDimBrush}"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom" />
+                   Margin="0,4,0,24" />
 
-        <!-- Метка: Логин -->
-        <TextBlock Grid.Row="2"
-                   Text="LOGIN:"
+        <!-- Логин -->
+        <TextBlock Text="LOGIN:"
                    FontFamily="Consolas" FontSize="11"
-                   Foreground="{StaticResource TextSecondaryBrush}" />
-
-        <!-- Поле: Логин -->
-        <TextBox Grid.Row="3"
-                 x:Name="LoginBox"
+                   Foreground="{StaticResource TextSecondaryBrush}"
+                   Margin="0,0,0,4" />
+        <TextBox x:Name="LoginBox"
                  Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
                  Background="{StaticResource BgSurfaceBrush}"
                  Foreground="{StaticResource TextPrimaryBrush}"
@@ -61,17 +40,15 @@
                  BorderThickness="1"
                  Padding="8,6"
                  FontFamily="Consolas" FontSize="13"
-                 CaretBrush="{StaticResource CyanBrush}" />
+                 CaretBrush="{StaticResource CyanBrush}"
+                 Margin="0,0,0,12" />
 
-        <!-- Метка: Пароль -->
-        <TextBlock Grid.Row="5"
-                   Text="PASSWORD:"
+        <!-- Пароль -->
+        <TextBlock Text="PASSWORD:"
                    FontFamily="Consolas" FontSize="11"
-                   Foreground="{StaticResource TextSecondaryBrush}" />
-
-        <!-- Поле: Пароль (PasswordBox — биндинг через codebehind) -->
-        <PasswordBox Grid.Row="6"
-                     x:Name="PasswordBox"
+                   Foreground="{StaticResource TextSecondaryBrush}"
+                   Margin="0,0,0,4" />
+        <PasswordBox x:Name="PasswordBox"
                      PasswordChanged="PasswordBox_PasswordChanged"
                      Background="{StaticResource BgSurfaceBrush}"
                      Foreground="{StaticResource TextPrimaryBrush}"
@@ -79,37 +56,36 @@
                      BorderThickness="1"
                      Padding="8,6"
                      FontFamily="Consolas" FontSize="13"
-                     CaretBrush="{StaticResource CyanBrush}" />
+                     Margin="0,0,0,20" />
 
-        <!-- Кнопка войти -->
-        <Button Grid.Row="8"
-                Content="[ ВОЙТИ ]"
+        <!-- Кнопка -->
+        <Button Content="[ ВОЙТИ ]"
                 Command="{Binding LoginCommand}"
                 Style="{StaticResource ActionButtonStyle}"
                 HorizontalAlignment="Stretch"
                 Height="36"
                 FontSize="13" />
 
-        <!-- Сообщение об ошибке -->
-        <TextBlock Grid.Row="10"
-                   Text="{Binding ErrorMessage}"
+        <!-- Ошибка -->
+        <TextBlock Text="{Binding ErrorMessage}"
                    Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"
                    FontFamily="Consolas" FontSize="11"
                    Foreground="#FF4040"
                    TextWrapping="Wrap"
-                   HorizontalAlignment="Center">
+                   HorizontalAlignment="Center"
+                   Margin="0,12,0,0">
             <TextBlock.Effect>
                 <DropShadowEffect Color="#FF0000" BlurRadius="8" ShadowDepth="0" Opacity="0.6" />
             </TextBlock.Effect>
         </TextBlock>
 
-        <!-- Статус загрузки -->
-        <TextBlock Grid.Row="12"
-                   Text="// проверка..."
+        <!-- Загрузка -->
+        <TextBlock Text="// проверка..."
                    Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}"
                    FontFamily="Consolas" FontSize="9"
                    Foreground="{StaticResource TextDimBrush}"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom" />
-    </Grid>
+                   Margin="0,8,0,0" />
+
+    </StackPanel>
 </Window>
