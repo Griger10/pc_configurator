@@ -51,6 +51,15 @@ public class LoginViewModel : ViewModelBase
     /// <summary>Срабатывает после успешной авторизации — LoginWindow подписывается и открывает MainWindow</summary>
     public event Action? LoginSucceeded;
 
+    public void Reset()
+    {
+        Login        = "";
+        Password     = "";
+        ErrorMessage = "";
+        HasError     = false;
+        IsLoading    = false;
+    }
+
     public LoginViewModel(PCConfiguratorContext db, UserSession session)
     {
         _db = db;

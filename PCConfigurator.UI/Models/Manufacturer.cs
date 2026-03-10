@@ -22,4 +22,6 @@ public partial class Manufacturer
     public virtual ICollection<Ram> Rams { get; set; } = new List<Ram>();
 
     public virtual ICollection<Storage> Storages { get; set; } = new List<Storage>();
+
+    public override string ToString() => Name ?? "";
 }

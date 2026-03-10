@@ -58,8 +58,7 @@
                 Padding="16,12"
                 Visibility="{Binding IsEditPanelOpen, Converter={StaticResource BoolToVisibility}}">
             <StackPanel>
-                <TextBlock Text="{Binding IsAddMode, Converter={StaticResource BoolToVisibility}}"
-                           FontFamily="Consolas" FontSize="11"
+                <TextBlock FontFamily="Consolas" FontSize="11"
                            Foreground="{StaticResource GreenNeonBrush}"
                            Margin="0,0,0,8">
                     <TextBlock.Style>

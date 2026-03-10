@@ -21,8 +21,13 @@ public partial class LoginWindow : Window
     private void OnLoginSucceeded()
     {
         var mainWindow = App.Services.GetRequiredService<MainWindow>();
+
+        // Обновить логин в сайдбаре (нужно при повторном входе после выхода)
+        if (mainWindow.DataContext is MainViewModel mainVm)
+            mainVm.RefreshUserInfo();
+
         mainWindow.Show();
-        Close();
+        Hide(); // Hide, не Close — Singleton-окно нужно снова при следующем выходе
     }
 
     private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
