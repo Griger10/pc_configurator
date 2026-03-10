@@ -10,6 +10,7 @@ DELETE FROM RAM;
 DELETE FROM GPUs;
 DELETE FROM Storage;
 DELETE FROM Manufacturers;
+DELETE FROM Users;
 
 DBCC CHECKIDENT ('ConfigurationStorage', RESEED, 0);
 DBCC CHECKIDENT ('ConfigurationRAM',     RESEED, 0);
@@ -20,6 +21,7 @@ DBCC CHECKIDENT ('RAM',                  RESEED, 0);
 DBCC CHECKIDENT ('GPUs',                 RESEED, 0);
 DBCC CHECKIDENT ('Storage',              RESEED, 0);
 DBCC CHECKIDENT ('Manufacturers',        RESEED, 0);
+DBCC CHECKIDENT ('Users',				 RESEED, 0);
 
 INSERT INTO Manufacturers (Name, Country, Website) VALUES
 ('Intel',          'США',   'https://www.intel.com'),       
