@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using Курсовой_Конфигуратор_ПК.Data;
 using Microsoft.EntityFrameworkCore;
 using PCConfigurator.UI.MVVM;
+using PCConfigurator.UI.Services;
 
 namespace PCConfigurator.UI.ViewModels;
 
@@ -20,6 +21,7 @@ public class ConfigurationRow
 public class ConfigurationsViewModel : ViewModelBase, ILoadable
 {
     private readonly PCConfiguratorContext _db;
+    private readonly UserSession _session;
 
     private ObservableCollection<ConfigurationRow> _configurations = new();
     public ObservableCollection<ConfigurationRow> Configurations
@@ -37,9 +39,10 @@ public class ConfigurationsViewModel : ViewModelBase, ILoadable
 
     public AsyncRelayCommand LoadCommand { get; }
 
-    public ConfigurationsViewModel(PCConfiguratorContext db)
+    public ConfigurationsViewModel(PCConfiguratorContext db, UserSession session)
     {
         _db = db;
+        _session = session;
         LoadCommand = new AsyncRelayCommand(LoadInternalAsync);
     }
 
@@ -50,13 +53,20 @@ public class ConfigurationsViewModel : ViewModelBase, ILoadable
         IsLoading = true;
         try
         {
-            var data = await _db.Configurations
+            var query = _db.Configurations
                 .Include(c => c.Processor)
                 .Include(c => c.Motherboard)
                 .Include(c => c.Gpu)
                 .Include(c => c.ConfigurationRams).ThenInclude(cr => cr.Ram)
                 .Include(c => c.ConfigurationStorages).ThenInclude(cs => cs.Storage)
-                .AsNoTracking()
+                .AsNoTracking();
+
+            // Обычный пользователь видит только свои конфигурации;
+            // администратор видит все
+            if (!_session.IsAdmin)
+                query = query.Where(c => c.UserId == _session.UserId);
+
+            var data = await query
                 .OrderByDescending(c => c.CreatedDate)
                 .ToListAsync();
 

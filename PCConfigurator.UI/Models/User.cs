@@ -9,8 +9,8 @@ public class User
     /// <summary>Уникальный логин пользователя</summary>
     public string Login { get; set; } = null!;
 
-    /// <summary>Хэш пароля (BCrypt)</summary>
-    public string PasswordHash { get; set; } = null!;
+    /// <summary>Пароль пользователя</summary>
+    public string Password { get; set; } = null!;
 
     /// <summary>Роль: "user" или "admin"</summary>
     public string Role { get; set; } = "user";

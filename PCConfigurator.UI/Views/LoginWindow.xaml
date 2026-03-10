@@ -1,0 +1,115 @@
+<Window x:Class="PCConfigurator.UI.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Вход в систему"
+        Height="360" Width="420"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{StaticResource BgMainBrush}"
+        BorderBrush="{StaticResource CyanBrush}"
+        BorderThickness="1">
+
+    <Grid Margin="32,28,32,28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="24" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="12" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="12" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="12" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0"
+                   Text="&gt;&gt; SYSTEM_LOGIN"
+                   FontFamily="Consolas" FontSize="20" FontWeight="Bold"
+                   Foreground="{StaticResource CyanBrush}"
+                   HorizontalAlignment="Center">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="#00F5FF" BlurRadius="14" ShadowDepth="0" Opacity="0.9" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <!-- Подзаголовок -->
+        <TextBlock Grid.Row="1"
+                   Text="PC CONFIGURATOR  v1.0"
+                   FontFamily="Consolas" FontSize="9"
+                   Foreground="{StaticResource TextDimBrush}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom" />
+
+        <!-- Метка: Логин -->
+        <TextBlock Grid.Row="2"
+                   Text="LOGIN:"
+                   FontFamily="Consolas" FontSize="11"
+                   Foreground="{StaticResource TextSecondaryBrush}" />
+
+        <!-- Поле: Логин -->
+        <TextBox Grid.Row="3"
+                 x:Name="LoginBox"
+                 Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
+                 Background="{StaticResource BgSurfaceBrush}"
+                 Foreground="{StaticResource TextPrimaryBrush}"
+                 BorderBrush="{StaticResource BorderDimBrush}"
+                 BorderThickness="1"
+                 Padding="8,6"
+                 FontFamily="Consolas" FontSize="13"
+                 CaretBrush="{StaticResource CyanBrush}" />
+
+        <!-- Метка: Пароль -->
+        <TextBlock Grid.Row="5"
+                   Text="PASSWORD:"
+                   FontFamily="Consolas" FontSize="11"
+                   Foreground="{StaticResource TextSecondaryBrush}" />
+
+        <!-- Поле: Пароль (PasswordBox — биндинг через codebehind) -->
+        <PasswordBox Grid.Row="6"
+                     x:Name="PasswordBox"
+                     PasswordChanged="PasswordBox_PasswordChanged"
+                     Background="{StaticResource BgSurfaceBrush}"
+                     Foreground="{StaticResource TextPrimaryBrush}"
+                     BorderBrush="{StaticResource BorderDimBrush}"
+                     BorderThickness="1"
+                     Padding="8,6"
+                     FontFamily="Consolas" FontSize="13"
+                     CaretBrush="{StaticResource CyanBrush}" />
+
+        <!-- Кнопка войти -->
+        <Button Grid.Row="8"
+                Content="[ ВОЙТИ ]"
+                Command="{Binding LoginCommand}"
+                Style="{StaticResource ActionButtonStyle}"
+                HorizontalAlignment="Stretch"
+                Height="36"
+                FontSize="13" />
+
+        <!-- Сообщение об ошибке -->
+        <TextBlock Grid.Row="10"
+                   Text="{Binding ErrorMessage}"
+                   Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"
+                   FontFamily="Consolas" FontSize="11"
+                   Foreground="#FF4040"
+                   TextWrapping="Wrap"
+                   HorizontalAlignment="Center">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="#FF0000" BlurRadius="8" ShadowDepth="0" Opacity="0.6" />
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <!-- Статус загрузки -->
+        <TextBlock Grid.Row="12"
+                   Text="// проверка..."
+                   Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}"
+                   FontFamily="Consolas" FontSize="9"
+                   Foreground="{StaticResource TextDimBrush}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom" />
+    </Grid>
+</Window>
