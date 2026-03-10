@@ -2,6 +2,7 @@ using System.Windows;
 using Курсовой_Конфигуратор_ПК.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PCConfigurator.UI.Services;
 using PCConfigurator.UI.ViewModels;
 using PCConfigurator.UI.Views;
 
@@ -10,6 +11,9 @@ namespace PCConfigurator.UI;
 public partial class App : Application
 {
     private IServiceProvider _serviceProvider = null!;
+
+    /// <summary>Статический доступ к DI-контейнеру (используется в LoginWindow codebehind)</summary>
+    public static IServiceProvider Services { get; private set; } = null!;
 
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -28,7 +32,11 @@ public partial class App : Application
             options => options.UseSqlServer(connectionString),
             ServiceLifetime.Transient);
 
+        // Сессия текущего пользователя (Singleton — живёт весь сеанс)
+        services.AddSingleton<UserSession>();
+
         // ViewModels
+        services.AddTransient<LoginViewModel>();
         services.AddTransient<ProcessorsViewModel>();
         services.AddTransient<MotherboardsViewModel>();
         services.AddTransient<RamViewModel>();
@@ -38,10 +46,12 @@ public partial class App : Application
         services.AddTransient<ConfiguratorViewModel>();
         services.AddSingleton<MainViewModel>();
 
-        // MainWindow
+        // Windows
+        services.AddSingleton<LoginWindow>();
         services.AddSingleton<MainWindow>();
 
         _serviceProvider = services.BuildServiceProvider();
+        Services = _serviceProvider;
 
         // Авто-применение миграций при старте: создаёт БД если не существует,
         // применяет все ещё не применённые миграции
@@ -51,7 +61,8 @@ public partial class App : Application
             db.Database.Migrate();
         }
 
-        var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-        mainWindow.Show();
+        // Показываем окно входа; MainWindow откроется после успешной авторизации
+        var loginWindow = _serviceProvider.GetRequiredService<LoginWindow>();
+        loginWindow.Show();
     }
 }

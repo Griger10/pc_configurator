@@ -96,17 +96,49 @@
                             Style="{StaticResource NavButtonStyle}" />
                 </StackPanel>
 
-                <!-- Нижняя статусная строка -->
+                <!-- Разделитель перед инструментами -->
+                <Border DockPanel.Dock="Top"
+                        Height="1"
+                        Margin="0,10"
+                        Background="{StaticResource BorderDimBrush}" />
+
+                <!-- Инструменты -->
+                <StackPanel DockPanel.Dock="Top" Margin="12,0">
+                    <TextBlock Text="// ИНСТРУМЕНТЫ"
+                               Foreground="{StaticResource GreenNeonBrush}"
+                               FontSize="9" FontWeight="Bold"
+                               FontFamily="Consolas"
+                               Margin="8,0,0,6">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#00FF88" BlurRadius="6"
+                                              ShadowDepth="0" Opacity="0.5" />
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <Button Content="[ ВЫГРУЗИТЬ В EXCEL ]"
+                            Command="{Binding ExportToExcelCommand}"
+                            Style="{StaticResource ActionButtonStyle}"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,0,0,4" />
+                </StackPanel>
+
+                <!-- Нижняя строка: логин и статус -->
                 <Border DockPanel.Dock="Bottom"
-                        Height="28"
                         Background="#000005"
                         BorderBrush="{StaticResource BorderDimBrush}"
-                        BorderThickness="0,1,0,0">
-                    <TextBlock Text="[ SYS_READY ]"
-                               Foreground="{StaticResource TextDimBrush}"
-                               FontSize="8" FontFamily="Consolas"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center" />
+                        BorderThickness="0,1,0,0"
+                        Padding="12,6">
+                    <StackPanel>
+                        <TextBlock FontFamily="Consolas" FontSize="8"
+                                   Foreground="{StaticResource CyanBrush}"
+                                   HorizontalAlignment="Center">
+                            <Run Text="[ USER: " /><Run Text="{Binding CurrentUserLogin}" /><Run Text=" ]" />
+                        </TextBlock>
+                        <TextBlock Text="[ SYS_READY ]"
+                                   Foreground="{StaticResource TextDimBrush}"
+                                   FontSize="8" FontFamily="Consolas"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,2,0,0" />
+                    </StackPanel>
                 </Border>
             </DockPanel>
         </Border>

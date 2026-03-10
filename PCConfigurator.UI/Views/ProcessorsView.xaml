@@ -4,6 +4,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -19,15 +22,139 @@
             </StackPanel>
         </Border>
 
+        <!-- Admin-тулбар (виден только для администраторов) -->
+        <Border Grid.Row="1"
+                Background="#050F1A"
+                BorderBrush="{StaticResource BorderDimBrush}"
+                BorderThickness="0,0,0,1"
+                Padding="16,6"
+                Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibility}}">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="[ + ДОБАВИТЬ ]"
+                        Command="{Binding StartAddCommand}"
+                        Style="{StaticResource ActionButtonStyle}" />
+                <Button Content="[ РЕДАКТИРОВАТЬ ]"
+                        Command="{Binding StartEditCommand}"
+                        Style="{StaticResource ActionButtonStyle}"
+                        Margin="8,0,0,0" />
+                <Button Content="[ УДАЛИТЬ ]"
+                        Command="{Binding DeleteCommand}"
+                        Style="{StaticResource ResetButtonStyle}"
+                        Margin="8,0,0,0" />
+                <TextBlock Text="{Binding EditStatus}"
+                           Foreground="#FF4040"
+                           Visibility="{Binding EditIsError, Converter={StaticResource BoolToVisibility}}"
+                           FontFamily="Consolas" FontSize="11"
+                           VerticalAlignment="Center"
+                           Margin="16,0,0,0" />
+            </StackPanel>
+        </Border>
+
+        <!-- Панель редактирования (виден когда IsEditPanelOpen=true) -->
+        <Border Grid.Row="2"
+                Background="{StaticResource BgSurfaceBrush}"
+                BorderBrush="{StaticResource CyanBrush}"
+                BorderThickness="0,0,0,1"
+                Padding="16,12"
+                Visibility="{Binding IsEditPanelOpen, Converter={StaticResource BoolToVisibility}}">
+            <StackPanel>
+                <TextBlock Text="{Binding IsAddMode, Converter={StaticResource BoolToVisibility}}"
+                           FontFamily="Consolas" FontSize="11"
+                           Foreground="{StaticResource GreenNeonBrush}"
+                           Margin="0,0,0,8">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Text" Value="// РЕДАКТИРОВАНИЕ ПРОЦЕССОРА" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsAddMode}" Value="True">
+                                    <Setter Property="Text" Value="// ДОБАВИТЬ ПРОЦЕССОР" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <WrapPanel>
+                    <!-- Производитель -->
+                    <StackPanel Margin="0,0,16,8">
+                        <TextBlock Text="ПРОИЗВОДИТЕЛЬ:" FontFamily="Consolas" FontSize="10"
+                                   Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,3" />
+                        <ComboBox ItemsSource="{Binding AvailableManufacturers}"
+                                  SelectedItem="{Binding EditManufacturer}"
+                                  DisplayMemberPath="Name"
+                                  Width="160"
+                                  Background="{StaticResource BgRowBrush}"
+                                  Foreground="{StaticResource TextPrimaryBrush}"
+                                  BorderBrush="{StaticResource BorderDimBrush}"
+                                  FontFamily="Consolas" FontSize="12" />
+                    </StackPanel>
+                    <!-- Модель -->
+                    <StackPanel Margin="0,0,16,8">
+                        <TextBlock Text="МОДЕЛЬ:" FontFamily="Consolas" FontSize="10"
+                                   Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,3" />
+                        <TextBox Text="{Binding EditModel, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="200"
+                                 Background="{StaticResource BgRowBrush}"
+                                 Foreground="{StaticResource TextPrimaryBrush}"
+                                 BorderBrush="{StaticResource BorderDimBrush}"
+                                 FontFamily="Consolas" FontSize="12" Padding="6,4" />
+                    </StackPanel>
+                    <!-- Сокет -->
+                    <StackPanel Margin="0,0,16,8">
+                        <TextBlock Text="СОКЕТ:" FontFamily="Consolas" FontSize="10"
+                                   Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,3" />
+                        <TextBox Text="{Binding EditSocket, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="120"
+                                 Background="{StaticResource BgRowBrush}"
+                                 Foreground="{StaticResource TextPrimaryBrush}"
+                                 BorderBrush="{StaticResource BorderDimBrush}"
+                                 FontFamily="Consolas" FontSize="12" Padding="6,4" />
+                    </StackPanel>
+                    <!-- Ядра -->
+                    <StackPanel Margin="0,0,16,8">
+                        <TextBlock Text="ЯДРА:" FontFamily="Consolas" FontSize="10"
+                                   Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,3" />
+                        <TextBox Text="{Binding EditCores, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="80"
+                                 Background="{StaticResource BgRowBrush}"
+                                 Foreground="{StaticResource TextPrimaryBrush}"
+                                 BorderBrush="{StaticResource BorderDimBrush}"
+                                 FontFamily="Consolas" FontSize="12" Padding="6,4" />
+                    </StackPanel>
+                    <!-- Частота -->
+                    <StackPanel Margin="0,0,16,8">
+                        <TextBlock Text="ЧАСТОТА ГГЦ:" FontFamily="Consolas" FontSize="10"
+                                   Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,3" />
+                        <TextBox Text="{Binding EditFrequency, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="100"
+                                 Background="{StaticResource BgRowBrush}"
+                                 Foreground="{StaticResource TextPrimaryBrush}"
+                                 BorderBrush="{StaticResource BorderDimBrush}"
+                                 FontFamily="Consolas" FontSize="12" Padding="6,4" />
+                    </StackPanel>
+                    <!-- Кнопки -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,0,0,8">
+                        <Button Content="[ СОХРАНИТЬ ]"
+                                Command="{Binding SaveEditCommand}"
+                                Style="{StaticResource ActionButtonStyle}" />
+                        <Button Content="[ ОТМЕНА ]"
+                                Command="{Binding CancelEditCommand}"
+                                Style="{StaticResource ResetButtonStyle}"
+                                Margin="8,0,0,0" />
+                    </StackPanel>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
         <!-- Индикатор загрузки -->
-        <TextBlock Grid.Row="1"
+        <TextBlock Grid.Row="4"
                    Text="Загрузка данных..."
                    Style="{StaticResource LoadingStyle}"
                    Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}" />
 
         <!-- Таблица -->
-        <DataGrid Grid.Row="1"
+        <DataGrid Grid.Row="4"
                   ItemsSource="{Binding Processors}"
+                  SelectedItem="{Binding SelectedProcessor, Mode=TwoWay}"
                   Margin="16">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"             Binding="{Binding ProcessorId}" Width="50" />

@@ -3,12 +3,14 @@ using Курсовой_Конфигуратор_ПК.Data;
 using Курсовой_Конфигуратор_ПК.Models;
 using Microsoft.EntityFrameworkCore;
 using PCConfigurator.UI.MVVM;
+using PCConfigurator.UI.Services;
 
 namespace PCConfigurator.UI.ViewModels;
 
 public class ConfiguratorViewModel : ViewModelBase, ILoadable
 {
     private readonly PCConfiguratorContext _db;
+    private readonly UserSession _session;
 
     // Доступные компоненты (для ComboBox)
     public ObservableCollection<Processor> AvailableProcessors { get; } = new();
@@ -93,9 +95,10 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
     public AsyncRelayCommand SaveCommand { get; }
     public RelayCommand ResetCommand { get; }
 
-    public ConfiguratorViewModel(PCConfiguratorContext db)
+    public ConfiguratorViewModel(PCConfiguratorContext db, UserSession session)
     {
         _db = db;
+        _session = session;
         LoadCommand = new AsyncRelayCommand(LoadInternalAsync);
         SaveCommand = new AsyncRelayCommand(SaveAsync);
         ResetCommand = new RelayCommand(Reset);
@@ -109,11 +112,11 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
         StatusMessage = string.Empty;
         try
         {
-            var processors  = await _db.Processors.Include(p => p.Manufacturer).AsNoTracking().OrderBy(p => p.Model).ToListAsync();
+            var processors   = await _db.Processors.Include(p => p.Manufacturer).AsNoTracking().OrderBy(p => p.Model).ToListAsync();
             var motherboards = await _db.Motherboards.Include(m => m.Manufacturer).AsNoTracking().OrderBy(m => m.Model).ToListAsync();
-            var rams        = await _db.Rams.Include(r => r.Manufacturer).AsNoTracking().OrderBy(r => r.Model).ToListAsync();
-            var gpus        = await _db.Gpus.Include(g => g.Manufacturer).AsNoTracking().OrderBy(g => g.Model).ToListAsync();
-            var storages    = await _db.Storages.Include(s => s.Manufacturer).AsNoTracking().OrderBy(s => s.Model).ToListAsync();
+            var rams         = await _db.Rams.Include(r => r.Manufacturer).AsNoTracking().OrderBy(r => r.Model).ToListAsync();
+            var gpus         = await _db.Gpus.Include(g => g.Manufacturer).AsNoTracking().OrderBy(g => g.Model).ToListAsync();
+            var storages     = await _db.Storages.Include(s => s.Manufacturer).AsNoTracking().OrderBy(s => s.Model).ToListAsync();
 
             AvailableProcessors.Clear();
             foreach (var p in processors) AvailableProcessors.Add(p);
@@ -173,7 +176,8 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
                 ProcessorId = SelectedProcessor.ProcessorId,
                 MotherboardId = SelectedMotherboard.MotherboardId,
                 Gpuid = SelectedGpu?.Gpuid,
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                UserId = _session.IsAuthenticated ? _session.UserId : null
             };
 
             _db.Configurations.Add(config);

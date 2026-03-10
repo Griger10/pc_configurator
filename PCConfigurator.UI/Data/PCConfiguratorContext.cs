@@ -42,7 +42,7 @@ public class PCConfiguratorContext : DbContext
             entity.HasKey(e => e.UserId);
             entity.HasIndex(e => e.Login).IsUnique();
             entity.Property(e => e.Login).HasMaxLength(100).IsRequired();
-            entity.Property(e => e.PasswordHash).HasMaxLength(256).IsRequired();
+            entity.Property(e => e.Password).HasMaxLength(256).IsRequired();
             entity.Property(e => e.Role).HasMaxLength(20).HasDefaultValue("user").IsRequired();
         });
 
