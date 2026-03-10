@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS RAM;
 DROP TABLE IF EXISTS Motherboards;
 DROP TABLE IF EXISTS Processors;
 DROP TABLE IF EXISTS Manufacturers;
+DROP TABLE IF EXISTS Users;
 GO
 
 CREATE TABLE Manufacturers (
@@ -88,14 +89,24 @@ CREATE TABLE Storage (
 );
 GO
 
+CREATE TABLE Users (
+	UserId	INT IDENTITY(1,1) PRIMARY KEY,
+	Login		NVARCHAR(100) NOT NULL,
+	Password	NVARCHAR(256) NOT NULL,
+	Role		NVARCHAR(20) NOT NULL DEFAULT 'user'
+);
+GO
+
 CREATE TABLE Configurations (
     ConfigurationId INT PRIMARY KEY IDENTITY(1,1),
     Name NVARCHAR(100) NOT NULL,
     ProcessorId INT NOT NULL,
     MotherboardId INT NOT NULL,
     GPUId INT NULL,
+	UserId INT NULL,
     CreatedDate DATETIME NOT NULL DEFAULT GETDATE(),
     Description NVARCHAR(500),
+	CONSTRAINT FK_Configurations_Users FOREIGN KEY (UserId) REFERENCES Users(UserId),
     CONSTRAINT FK_Configurations_Processors FOREIGN KEY (ProcessorId) 
         REFERENCES Processors(ProcessorId),
     CONSTRAINT FK_Configurations_Motherboards FOREIGN KEY (MotherboardId) 

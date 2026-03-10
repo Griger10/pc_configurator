@@ -22,18 +22,18 @@ DBCC CHECKIDENT ('Storage',              RESEED, 0);
 DBCC CHECKIDENT ('Manufacturers',        RESEED, 0);
 
 INSERT INTO Manufacturers (Name, Country, Website) VALUES
-('Intel',          'США',   'https://www.intel.com'),       -- 1
-('AMD',            'США',   'https://www.amd.com'),         -- 2
-('NVIDIA',         'США',   'https://www.nvidia.com'),      -- 3
-('ASUS',           'Тайвань','https://www.asus.com'),        -- 4
-('MSI',            'Тайвань','https://www.msi.com'),         -- 5
-('Gigabyte',       'Тайвань','https://www.gigabyte.com'),    -- 6
-('Corsair',        'США',   'https://www.corsair.com'),     -- 7
-('Kingston',       'США',   'https://www.kingston.com'),    -- 8
-('Samsung',        'Корея', 'https://www.samsung.com'),     -- 9
-('Seagate',        'США',   'https://www.seagate.com'),     -- 10
-('Western Digital','США',   'https://www.westerndigital.com'), -- 11
-('Crucial',        'США',   'https://www.crucial.com');     -- 12
+('Intel',          'США',   'https://www.intel.com'),       
+('AMD',            'США',   'https://www.amd.com'),         
+('NVIDIA',         'США',   'https://www.nvidia.com'),      
+('ASUS',           'Тайвань','https://www.asus.com'),        
+('MSI',            'Тайвань','https://www.msi.com'),         
+('Gigabyte',       'Тайвань','https://www.gigabyte.com'),    
+('Corsair',        'США',   'https://www.corsair.com'),     
+('Kingston',       'США',   'https://www.kingston.com'),   
+('Samsung',        'Корея', 'https://www.samsung.com'),     
+('Seagate',        'США',   'https://www.seagate.com'),     
+('Western Digital','США',   'https://www.westerndigital.com'), 
+('Crucial',        'США',   'https://www.crucial.com');     
 
 INSERT INTO Processors (ManufacturerId, Model, Socket, Cores, Frequency) VALUES
 (1, 'Core i3-12100',  'LGA1700',  4,  3.30),
@@ -144,3 +144,8 @@ INSERT INTO Storage (ManufacturerId, Model, Type, Capacity, Interface) VALUES
 (11, 'WD Blue 1TB 7200rpm',     'HDD', 1000,  'SATA'),
 (11, 'WD Blue 2TB 5400rpm',     'HDD', 2000,  'SATA'),
 (11, 'WD Red Plus 4TB',         'HDD', 4000,  'SATA');
+
+INSERT INTO Users (Login, Password, Role)
+VALUES 
+	('user1', 'user1', 'user'),
+	('admin1', 'admin', 'admin');
