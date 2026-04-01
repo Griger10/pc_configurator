@@ -28,4 +28,9 @@ public partial class MainWindow : Window
         loginWindow.Show();
         Hide();
     }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

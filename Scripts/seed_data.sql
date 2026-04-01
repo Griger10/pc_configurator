@@ -150,4 +150,4 @@ INSERT INTO Storage (ManufacturerId, Model, Type, Capacity, Interface) VALUES
 INSERT INTO Users (Login, Password, Role)
 VALUES 
 	('user1', 'user1', 'user'),
-	('admin1', 'admin', 'admin');
+	('admin1', 'admin1', 'admin');
