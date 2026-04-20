@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PCConfigurator.UI.ViewModels.ConfigurationRow">
+    <Position X="4.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAQCAAAAAAAAAQAAAAAAAAAAgAAAAAMAgA=</HashCode>
+      <FileName>ViewModels\ConfigurationsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.ConfigurationsViewModel">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAADAAAAAAAAgAAAABAAAAAAgAAEAAAAAAAI=</HashCode>
+      <FileName>ViewModels\ConfigurationsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.ConfiguratorViewModel">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAoEiAEIECAABBAAAARgIQAAHoABCgAgAAEAAIANgQA=</HashCode>
+      <FileName>ViewModels\ConfiguratorViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.GpusViewModel">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAABkUEAQCixIAEEAAAiAAABDAABCBIgCAQAABEAAII=</HashCode>
+      <FileName>ViewModels\GpusViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.LoginViewModel">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AwQAgAAAAACABAAAAAAAAAAEAAAAAAgqAAAQIASAAAI=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.MainViewModel">
+    <Position X="6.25" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAFNACAAAEAIiABAEkAAJggAAIABAggAAUAAAAAIA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.MotherboardsViewModel">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BCQAgVAAwAixAAEFAAQiAAUBDAABCBAgCQAAABAAgIM=</HashCode>
+      <FileName>ViewModels\MotherboardsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.ProcessorsViewModel">
+    <Position X="2.5" Y="6" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAAiUAAQAixAIEFAAAiQAEBDAIBCBAoCCAAABABAIM=</HashCode>
+      <FileName>ViewModels\ProcessorsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.RamViewModel">
+    <Position X="8" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAIAgUAAQAixACEEAAAiIAABDEABGBAoCACAABEAAIM=</HashCode>
+      <FileName>ViewModels\RamViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PCConfigurator.UI.ViewModels.StorageViewModel">
+    <Position X="6" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAgEgUAAQAixAAGEAAAiAAABDEABGBEgCACAABEAgII=</HashCode>
+      <FileName>ViewModels\StorageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
