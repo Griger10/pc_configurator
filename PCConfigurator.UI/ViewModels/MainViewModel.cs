@@ -26,11 +26,8 @@ public class MainViewModel : ViewModelBase
         get => _currentView;
         private set => SetProperty(ref _currentView, value);
     }
-
-    /// <summary>Логин текущего пользователя для отображения в сайдбаре</summary>
     public string CurrentUserLogin => _session.Login;
 
-    /// <summary>Срабатывает при выходе — MainWindow подписывается и показывает LoginWindow</summary>
     public event Action? LogoutRequested;
 
     public RelayCommand NavigateProcessorsCommand { get; }
@@ -43,7 +40,6 @@ public class MainViewModel : ViewModelBase
     public AsyncRelayCommand ExportToExcelCommand { get; }
     public RelayCommand LogoutCommand { get; }
 
-    /// <summary>Обновить отображение логина в сайдбаре после повторного входа</summary>
     public void RefreshUserInfo() => OnPropertyChanged(nameof(CurrentUserLogin));
 
     public MainViewModel(
@@ -77,7 +73,6 @@ public class MainViewModel : ViewModelBase
         ExportToExcelCommand          = new AsyncRelayCommand(ExportToExcelAsync);
         LogoutCommand                 = new RelayCommand(Logout);
 
-        // Страница по умолчанию
         _currentView = _processorsVm;
         _processorsVm.Load();
     }
@@ -112,7 +107,6 @@ public class MainViewModel : ViewModelBase
 
         using var wb = new XLWorkbook();
 
-        // ── Лист 1: Пользователи (без пароля) ──────────────────
         var wsUsers = wb.Worksheets.Add("Пользователи");
         wsUsers.Cell(1, 1).Value = "ID";
         wsUsers.Cell(1, 2).Value = "Логин";
@@ -127,7 +121,6 @@ public class MainViewModel : ViewModelBase
         }
         wsUsers.Columns().AdjustToContents();
 
-        // ── Лист 2: Конфигурации ────────────────────────────────
         var wsConf = wb.Worksheets.Add("Конфигурации");
         wsConf.Cell(1, 1).Value = "ID";
         wsConf.Cell(1, 2).Value = "Название";
@@ -164,7 +157,6 @@ public class MainViewModel : ViewModelBase
         }
         wsConf.Columns().AdjustToContents();
 
-        // ── Лист 3: Процессоры ─────────────────────────────────
         var wsProc = wb.Worksheets.Add("Процессоры");
         wsProc.Cell(1, 1).Value = "ID";
         wsProc.Cell(1, 2).Value = "Производитель";
@@ -185,7 +177,6 @@ public class MainViewModel : ViewModelBase
         }
         wsProc.Columns().AdjustToContents();
 
-        // ── Лист 4: Материнские платы ──────────────────────────
         var wsMb = wb.Worksheets.Add("Материнские платы");
         wsMb.Cell(1, 1).Value = "ID";
         wsMb.Cell(1, 2).Value = "Производитель";
@@ -208,7 +199,6 @@ public class MainViewModel : ViewModelBase
         }
         wsMb.Columns().AdjustToContents();
 
-        // ── Лист 5: Оперативная память ─────────────────────────
         var wsRam = wb.Worksheets.Add("Оперативная память");
         wsRam.Cell(1, 1).Value = "ID";
         wsRam.Cell(1, 2).Value = "Производитель";
@@ -229,7 +219,6 @@ public class MainViewModel : ViewModelBase
         }
         wsRam.Columns().AdjustToContents();
 
-        // ── Лист 6: Видеокарты ─────────────────────────────────
         var wsGpu = wb.Worksheets.Add("Видеокарты");
         wsGpu.Cell(1, 1).Value = "ID";
         wsGpu.Cell(1, 2).Value = "Производитель";
@@ -250,7 +239,6 @@ public class MainViewModel : ViewModelBase
         }
         wsGpu.Columns().AdjustToContents();
 
-        // ── Лист 7: Накопители ─────────────────────────────────
         var wsStorage = wb.Worksheets.Add("Накопители");
         wsStorage.Cell(1, 1).Value = "ID";
         wsStorage.Cell(1, 2).Value = "Производитель";
@@ -271,7 +259,6 @@ public class MainViewModel : ViewModelBase
         }
         wsStorage.Columns().AdjustToContents();
 
-        // ── Лист 8: Производители ──────────────────────────────
         var wsMfr = wb.Worksheets.Add("Производители");
         wsMfr.Cell(1, 1).Value = "ID";
         wsMfr.Cell(1, 2).Value = "Название";

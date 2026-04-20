@@ -11,15 +11,12 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
 {
     private readonly PCConfiguratorContext _db;
     private readonly UserSession _session;
-
-    // Доступные компоненты (для ComboBox)
     public ObservableCollection<Processor> AvailableProcessors { get; } = new();
     public ObservableCollection<Motherboard> AvailableMotherboards { get; } = new();
     public ObservableCollection<Ram> AvailableRams { get; } = new();
     public ObservableCollection<Gpu> AvailableGpus { get; } = new();
     public ObservableCollection<Storage> AvailableStorages { get; } = new();
 
-    // Выбранные компоненты
     private Processor? _selectedProcessor;
     public Processor? SelectedProcessor
     {
@@ -69,7 +66,6 @@ public class ConfiguratorViewModel : ViewModelBase, ILoadable
         set => SetProperty(ref _storageQuantity, value);
     }
 
-    // Метаданные конфигурации
     private string _configName = string.Empty;
     public string ConfigName
     {

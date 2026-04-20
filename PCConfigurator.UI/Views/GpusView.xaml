@@ -21,7 +21,6 @@
             </StackPanel>
         </Border>
 
-        <!-- Admin-тулбар -->
         <Border Grid.Row="1"
                 Background="#050F1A"
                 BorderBrush="{StaticResource BorderDimBrush}"
@@ -49,7 +48,6 @@
             </StackPanel>
         </Border>
 
-        <!-- Панель редактирования -->
         <Border Grid.Row="2"
                 Background="{StaticResource BgSurfaceBrush}"
                 BorderBrush="{StaticResource CyanBrush}"
@@ -136,7 +134,6 @@
             </StackPanel>
         </Border>
 
-        <!-- Индикатор загрузки -->
         <TextBlock Grid.Row="3"
                    Text="Загрузка данных..."
                    Style="{StaticResource LoadingStyle}"

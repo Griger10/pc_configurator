@@ -16,8 +16,6 @@ public class Configuration
     public int? Gpuid { get; set; }
 
     public DateTime CreatedDate { get; set; }
-
-    /// <summary>Пользователь, создавший конфигурацию (nullable — для обратной совместимости)</summary>
     public int? UserId { get; set; }
 
     public virtual ICollection<ConfigurationRam> ConfigurationRams { get; set; } = new List<ConfigurationRam>();

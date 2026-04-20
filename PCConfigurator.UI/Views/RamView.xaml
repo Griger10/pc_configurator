@@ -20,8 +20,6 @@
                         Margin="16,0,0,0" />
             </StackPanel>
         </Border>
-
-        <!-- Admin-тулбар -->
         <Border Grid.Row="1"
                 Background="#050F1A"
                 BorderBrush="{StaticResource BorderDimBrush}"
@@ -48,8 +46,6 @@
                            Margin="16,0,0,0" />
             </StackPanel>
         </Border>
-
-        <!-- Панель редактирования -->
         <Border Grid.Row="2"
                 Background="{StaticResource BgSurfaceBrush}"
                 BorderBrush="{StaticResource CyanBrush}"
@@ -135,14 +131,10 @@
                 </WrapPanel>
             </StackPanel>
         </Border>
-
-        <!-- Индикатор загрузки -->
         <TextBlock Grid.Row="3"
                    Text="Загрузка данных..."
                    Style="{StaticResource LoadingStyle}"
                    Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}" />
-
-        <!-- Таблица -->
         <DataGrid Grid.Row="3"
                   ItemsSource="{Binding Rams}"
                   SelectedItem="{Binding SelectedRam, Mode=TwoWay}"

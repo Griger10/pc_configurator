@@ -27,8 +27,6 @@ public class PCConfiguratorContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // Используется только если контекст создаётся напрямую (например, dotnet ef migrations)
-        // В рабочем режиме строка подключения настраивается через DI в App.xaml.cs
         if (!optionsBuilder.IsConfigured)
             optionsBuilder.UseSqlServer(
                 "Server=DESKTOP-62AA05E\\SQLEXPRESS;Database=PCConfigurator;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -36,7 +34,6 @@ public class PCConfiguratorContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // ───── Users ─────────────────────────────────────────────
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId);
@@ -46,7 +43,6 @@ public class PCConfiguratorContext : DbContext
             entity.Property(e => e.Role).HasMaxLength(20).HasDefaultValue("user").IsRequired();
         });
 
-        // ───── Configurations ─────────────────────────────────────
         modelBuilder.Entity<Configuration>(entity =>
         {
             entity.HasKey(e => e.ConfigurationId);
@@ -74,7 +70,6 @@ public class PCConfiguratorContext : DbContext
                 .OnDelete(DeleteBehavior.SetNull);
         });
 
-        // ───── ConfigurationRAM ───────────────────────────────────
         modelBuilder.Entity<ConfigurationRam>(entity =>
         {
             entity.HasKey(e => e.ConfigurationRamid);
@@ -92,7 +87,6 @@ public class PCConfiguratorContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ───── ConfigurationStorage ───────────────────────────────
         modelBuilder.Entity<ConfigurationStorage>(entity =>
         {
             entity.HasKey(e => e.ConfigurationStorageId);
@@ -108,7 +102,6 @@ public class PCConfiguratorContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ───── GPUs ───────────────────────────────────────────────
         modelBuilder.Entity<Gpu>(entity =>
         {
             entity.HasKey(e => e.Gpuid);
@@ -122,7 +115,6 @@ public class PCConfiguratorContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ───── Manufacturers ──────────────────────────────────────
         modelBuilder.Entity<Manufacturer>(entity =>
         {
             entity.HasKey(e => e.ManufacturerId);
@@ -131,7 +123,6 @@ public class PCConfiguratorContext : DbContext
             entity.Property(e => e.Website).HasMaxLength(200);
         });
 
-        // ───── Motherboards ───────────────────────────────────────
         modelBuilder.Entity<Motherboard>(entity =>
         {
             entity.HasKey(e => e.MotherboardId);
@@ -146,7 +137,6 @@ public class PCConfiguratorContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ───── Processors ─────────────────────────────────────────
         modelBuilder.Entity<Processor>(entity =>
         {
             entity.HasKey(e => e.ProcessorId);
@@ -159,7 +149,6 @@ public class PCConfiguratorContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ───── RAM ────────────────────────────────────────────────
         modelBuilder.Entity<Ram>(entity =>
         {
             entity.HasKey(e => e.Ramid);
@@ -173,7 +162,6 @@ public class PCConfiguratorContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // ───── Storage ────────────────────────────────────────────
         modelBuilder.Entity<Storage>(entity =>
         {
             entity.HasKey(e => e.StorageId);

@@ -48,7 +48,6 @@ public class LoginViewModel : ViewModelBase
 
     public AsyncRelayCommand LoginCommand { get; }
 
-    /// <summary>Срабатывает после успешной авторизации — LoginWindow подписывается и открывает MainWindow</summary>
     public event Action? LoginSucceeded;
 
     public void Reset()
@@ -86,7 +85,6 @@ public class LoginViewModel : ViewModelBase
                 return;
             }
 
-            // Заполняем сессию
             _session.UserId = user.UserId;
             _session.Login = user.Login;
             _session.Role = user.Role;

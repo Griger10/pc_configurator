@@ -12,13 +12,11 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Сайдбар -->
         <Border Grid.Column="0"
                 Background="{StaticResource BgSidebarBrush}"
                 BorderBrush="{StaticResource BorderDimBrush}"
                 BorderThickness="0,0,1,0">
             <DockPanel>
-                <!-- Логотип / заголовок -->
                 <Border DockPanel.Dock="Top" Padding="20,20,20,16"
                         BorderBrush="{StaticResource CyanBrush}"
                         BorderThickness="0,0,0,1">
@@ -39,7 +37,6 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Навигация: каталог компонентов -->
                 <StackPanel DockPanel.Dock="Top" Margin="0,12,0,0">
                     <TextBlock Text="// КОМПОНЕНТЫ"
                                Foreground="{StaticResource GreenNeonBrush}"
@@ -69,13 +66,11 @@
                             Style="{StaticResource NavButtonStyle}" />
                 </StackPanel>
 
-                <!-- Разделитель -->
                 <Border DockPanel.Dock="Top"
                         Height="1"
                         Margin="0,10"
                         Background="{StaticResource BorderDimBrush}" />
 
-                <!-- Навигация: сборки -->
                 <StackPanel DockPanel.Dock="Top">
                     <TextBlock Text="// СБОРКИ"
                                Foreground="{StaticResource GreenNeonBrush}"
@@ -96,13 +91,11 @@
                             Style="{StaticResource NavButtonStyle}" />
                 </StackPanel>
 
-                <!-- Разделитель перед инструментами -->
                 <Border DockPanel.Dock="Top"
                         Height="1"
                         Margin="0,10"
                         Background="{StaticResource BorderDimBrush}" />
 
-                <!-- Инструменты -->
                 <StackPanel DockPanel.Dock="Top" Margin="12,0">
                     <TextBlock Text="// ИНСТРУМЕНТЫ"
                                Foreground="{StaticResource GreenNeonBrush}"
@@ -121,7 +114,7 @@
                             Margin="0,0,0,4" />
                 </StackPanel>
 
-                <!-- Кнопка выхода -->
+           
                 <StackPanel DockPanel.Dock="Bottom" Margin="12,0,12,8">
                     <Button Content="[ ВЫЙТИ ]"
                             Command="{Binding LogoutCommand}"
@@ -129,7 +122,6 @@
                             HorizontalAlignment="Stretch" />
                 </StackPanel>
 
-                <!-- Нижняя строка: логин и статус -->
                 <Border DockPanel.Dock="Bottom"
                         Background="#000005"
                         BorderBrush="{StaticResource BorderDimBrush}"
@@ -151,7 +143,6 @@
             </DockPanel>
         </Border>
 
-        <!-- Основная область контента -->
         <ContentControl Grid.Column="1"
                         Content="{Binding CurrentView}"
                         Margin="0" />

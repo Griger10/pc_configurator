@@ -9,7 +9,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
         <Border Grid.Row="0" Background="{StaticResource BgSurfaceBrush}" Padding="20,14"
                 BorderBrush="{StaticResource CyanBrush}" BorderThickness="0,0,0,1">
             <StackPanel Orientation="Horizontal">
@@ -21,7 +20,6 @@
             </StackPanel>
         </Border>
 
-        <!-- Admin-тулбар -->
         <Border Grid.Row="1"
                 Background="#050F1A"
                 BorderBrush="{StaticResource BorderDimBrush}"
@@ -49,7 +47,6 @@
             </StackPanel>
         </Border>
 
-        <!-- Панель редактирования -->
         <Border Grid.Row="2"
                 Background="{StaticResource BgSurfaceBrush}"
                 BorderBrush="{StaticResource CyanBrush}"
@@ -146,13 +143,11 @@
             </StackPanel>
         </Border>
 
-        <!-- Индикатор загрузки -->
         <TextBlock Grid.Row="3"
                    Text="Загрузка данных..."
                    Style="{StaticResource LoadingStyle}"
                    Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}" />
 
-        <!-- Таблица -->
         <DataGrid Grid.Row="3"
                   ItemsSource="{Binding Motherboards}"
                   SelectedItem="{Binding SelectedMotherboard, Mode=TwoWay}"

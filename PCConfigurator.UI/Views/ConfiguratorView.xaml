@@ -7,18 +7,15 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Заголовок -->
         <Border Grid.Row="0" Background="{StaticResource BgSurfaceBrush}" Padding="20,14"
                 BorderBrush="{StaticResource CyanBrush}" BorderThickness="0,0,0,1">
             <TextBlock Text="Новая сборка" Style="{StaticResource PageTitleStyle}" />
         </Border>
 
-        <!-- Форма -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
                       Background="{StaticResource BgMainBrush}">
             <StackPanel Margin="24" MaxWidth="560">
 
-                <!-- Название конфигурации -->
                 <TextBlock Text="Название конфигурации *"
                            FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
                            Foreground="{StaticResource TextSecondaryBrush}"
@@ -58,7 +55,6 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <!-- Материнская плата -->
                 <TextBlock Text="Материнская плата *"
                            FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
                            Foreground="{StaticResource TextSecondaryBrush}"
@@ -84,7 +80,6 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <!-- Видеокарта (необязательно) -->
                 <TextBlock Text="Видеокарта"
                            FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
                            Foreground="{StaticResource TextSecondaryBrush}"
@@ -110,7 +105,6 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <!-- Оперативная память (необязательно) -->
                 <TextBlock Text="Оперативная память"
                            FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
                            Foreground="{StaticResource TextSecondaryBrush}"
@@ -159,7 +153,6 @@
                              BorderThickness="1" />
                 </Grid>
 
-                <!-- Накопитель (необязательно) -->
                 <TextBlock Text="Накопитель"
                            FontWeight="SemiBold" FontFamily="Consolas" FontSize="11"
                            Foreground="{StaticResource TextSecondaryBrush}"
@@ -208,7 +201,6 @@
                              BorderThickness="1" />
                 </Grid>
 
-                <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal">
                     <Button Content="[ СОХРАНИТЬ ]"
                             Command="{Binding SaveCommand}"
@@ -220,7 +212,6 @@
                             Padding="16,10" />
                 </StackPanel>
 
-                <!-- Статусное сообщение -->
                 <TextBlock Text="{Binding StatusMessage}"
                            Margin="0,14,0,0"
                            FontFamily="Consolas" FontSize="11"

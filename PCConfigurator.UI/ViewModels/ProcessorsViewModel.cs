@@ -12,7 +12,6 @@ public class ProcessorsViewModel : ViewModelBase, ILoadable
     private readonly PCConfiguratorContext _db;
     private readonly UserSession _session;
 
-    // ─── Список данных ────────────────────────────────────────────
     private ObservableCollection<Processor> _processors = new();
     public ObservableCollection<Processor> Processors
     {
@@ -27,18 +26,14 @@ public class ProcessorsViewModel : ViewModelBase, ILoadable
         private set => SetProperty(ref _isLoading, value);
     }
 
-    // ─── Права ────────────────────────────────────────────────────
     public bool IsAdmin => _session.IsAdmin;
 
-    // ─── Выбранная строка ─────────────────────────────────────────
     private Processor? _selectedProcessor;
     public Processor? SelectedProcessor
     {
         get => _selectedProcessor;
         set => SetProperty(ref _selectedProcessor, value);
     }
-
-    // ─── Форма редактирования ────────────────────────────────────
     public ObservableCollection<Manufacturer> AvailableManufacturers { get; } = new();
 
     private bool _isEditPanelOpen;
@@ -103,8 +98,6 @@ public class ProcessorsViewModel : ViewModelBase, ILoadable
         get => _editIsError;
         set => SetProperty(ref _editIsError, value);
     }
-
-    // ─── Команды ──────────────────────────────────────────────────
     public AsyncRelayCommand LoadCommand { get; }
     public RelayCommand StartAddCommand { get; }
     public RelayCommand StartEditCommand { get; }

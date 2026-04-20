@@ -27,7 +27,6 @@
                    HorizontalAlignment="Center"
                    Margin="0,4,0,24" />
 
-        <!-- Логин -->
         <TextBlock Text="LOGIN:"
                    FontFamily="Consolas" FontSize="11"
                    Foreground="{StaticResource TextSecondaryBrush}"
@@ -43,7 +42,6 @@
                  CaretBrush="{StaticResource CyanBrush}"
                  Margin="0,0,0,12" />
 
-        <!-- Пароль -->
         <TextBlock Text="PASSWORD:"
                    FontFamily="Consolas" FontSize="11"
                    Foreground="{StaticResource TextSecondaryBrush}"
@@ -58,7 +56,6 @@
                      FontFamily="Consolas" FontSize="13"
                      Margin="0,0,0,20" />
 
-        <!-- Кнопка -->
         <Button Content="[ ВОЙТИ ]"
                 Command="{Binding LoginCommand}"
                 Style="{StaticResource ActionButtonStyle}"
@@ -66,7 +63,6 @@
                 Height="36"
                 FontSize="13" />
 
-        <!-- Ошибка -->
         <TextBlock Text="{Binding ErrorMessage}"
                    Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}"
                    FontFamily="Consolas" FontSize="11"
@@ -79,7 +75,6 @@
             </TextBlock.Effect>
         </TextBlock>
 
-        <!-- Загрузка -->
         <TextBlock Text="// проверка..."
                    Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}"
                    FontFamily="Consolas" FontSize="9"

@@ -61,8 +61,6 @@ public class ConfigurationsViewModel : ViewModelBase, ILoadable
                 .Include(c => c.ConfigurationStorages).ThenInclude(cs => cs.Storage)
                 .AsNoTracking();
 
-            // Обычный пользователь видит только свои конфигурации;
-            // администратор видит все
             if (!_session.IsAdmin)
                 query = query.Where(c => c.UserId == _session.UserId);
 
